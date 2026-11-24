@@ -1,0 +1,3101 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaCare Multi-Specialty Hospital &amp; Research Center</title>
+  <meta name="description" content="NovaCare Multi-Specialty Hospital & Research Center — Advanced Medicine, Compassionate Care. 24/7 Emergency, Specialist Doctors, Online Appointment Booking & Health Hub." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            clinical: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              200: '#99f6e4',
+              300: '#5eead4',
+              400: '#2dd4bf',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              800: '#115e59',
+              900: '#134e4a',
+              950: '#042f2e',
+            },
+            emergency: {
+              50: '#fef2f2',
+              100: '#fee2e2',
+              500: '#ef4444',
+              600: '#dc2626',
+              700: '#b91c1c',
+            }
+          },
+          boxShadow: {
+            'soft': '0 10px 30px -10px rgba(15, 118, 110, 0.12)',
+            'card': '0 4px 20px -2px rgba(15, 23, 42, 0.06)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Minimal helper animations & scrollbars while keeping layout styling in Tailwind */
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    }
+
+    /* Hero crossfade slideshow */
+    .hero-slide {
+      opacity: 0;
+      transition: opacity 1.4s ease-in-out, transform 8s ease-out;
+      transform: scale(1.04);
+    }
+    .hero-slide.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Subtle pulse for 24/7 emergency dot */
+    @keyframes pulseRing {
+      0% { transform: scale(0.8); opacity: 0.9; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+    .pulse-ring::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      background-color: #ef4444;
+      animation: pulseRing 1.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
+
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94a3b8;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0f766e;
+    }
+
+    /* Print styling for Appointment Confirmation Slip */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printableReceiptArea, #printableReceiptArea * {
+        visibility: visible;
+      }
+      #printableReceiptArea {
+        position: fixed;
+        inset: 0;
+        background: white;
+        padding: 32px;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-clinical-100 selection:text-clinical-900 overflow-x-hidden">
+
+  <!-- =========================================================
+       1. TOP 24/7 EMERGENCY UTILITY BAR
+  ========================================================== -->
+  <div class="bg-slate-900 text-slate-200 text-xs sm:text-sm border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-2">
+      <!-- Emergency numbers -->
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-1.5">
+        <a href="tel:+18009112273" onclick="copyNumberToast('+1-800-911-CARE', '24/7 Emergency Helpline')" class="inline-flex items-center gap-2 font-semibold text-white hover:text-red-300 transition">
+          <span class="relative flex h-2.5 w-2.5 pulse-ring">
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emergency-600"></span>
+          </span>
+          <span class="text-red-400 uppercase tracking-wider text-[11px] font-bold">24/7 Emergency:</span>
+          <span>+1-800-911-CARE</span>
+        </a>
+        <span class="hidden md:inline text-slate-600">|</span>
+        <button type="button" onclick="copyNumberToast('+1-800-911-2628', 'Ambulance Dispatch')" class="hidden sm:inline-flex items-center gap-1.5 hover:text-cyan-300 transition">
+          <svg class="w-3.5 h-3.5 text-red-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
+          <span>Ambulance: <strong class="text-white">+1-800-911-2628</strong></span>
+        </button>
+        <span class="hidden lg:inline text-slate-600">|</span>
+        <button type="button" onclick="copyNumberToast('+1-800-555-0192', '24/7 Blood Bank')" class="hidden lg:inline-flex items-center gap-1.5 hover:text-cyan-300 transition">
+          <svg class="w-3.5 h-3.5 text-red-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+          <span>Blood Bank: <strong class="text-white">+1-800-555-0192</strong></span>
+        </button>
+      </div>
+
+      <!-- Visiting hours -->
+      <div class="hidden md:flex items-center gap-2 text-slate-300">
+        <svg class="w-3.5 h-3.5 text-clinical-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span>Visiting Hours: <strong class="text-white">9:00 AM – 8:00 PM Daily</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       STICKY GLASSMORPHISM NAVBAR
+  ========================================================== -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg border-b border-slate-200/80 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <!-- Brand Logo -->
+        <a href="#top" class="flex items-center gap-3 group focus:outline-none">
+          <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-gradient-to-br from-clinical-700 to-clinical-500 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition">
+            <!-- Medical Cross + Pulse SVG -->
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+              <circle cx="12" cy="12" r="9" stroke-opacity="0.35" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="leading-tight">
+            <span class="block font-display font-extrabold text-lg md:text-xl tracking-tight text-slate-900">
+              Nova<span class="text-clinical-600">Care</span>
+            </span>
+            <span class="block text-[10px] md:text-[11px] font-medium uppercase tracking-wider text-slate-500">
+              Multi-Specialty Hospital
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <nav class="hidden lg:flex items-center gap-1" aria-label="Primary Navigation">
+          <a href="#about" class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-clinical-700 hover:bg-clinical-50 transition">About</a>
+          <a href="#departments" class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-clinical-700 hover:bg-clinical-50 transition">Departments</a>
+          <a href="#doctors" class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-clinical-700 hover:bg-clinical-50 transition">Doctors</a>
+          <a href="#services" class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-clinical-700 hover:bg-clinical-50 transition">Services</a>
+          <a href="#health-hub" class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-clinical-700 hover:bg-clinical-50 transition">Health Hub</a>
+          <a href="#emergency" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-emergency-600 hover:bg-emergency-50 transition">Emergency</a>
+        </nav>
+
+        <!-- Action Buttons -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- My Bookings Drawer Trigger -->
+          <button
+            type="button"
+            id="openBookingsBtn"
+            onclick="openBookingsDrawer()"
+            class="relative inline-flex items-center gap-2 px-3 sm:px-3.5 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-semibold transition shadow-sm"
+            aria-label="Open My Bookings"
+          >
+            <svg class="w-4 h-4 text-clinical-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span class="hidden sm:inline">My Bookings</span>
+            <span id="bookingsBadge" class="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-[11px] font-bold bg-clinical-600 text-white">0</span>
+          </button>
+
+          <!-- Primary CTA -->
+          <a
+            href="#appointment"
+            class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-clinical-700 hover:bg-clinical-600 text-white text-sm font-semibold shadow-md shadow-clinical-700/20 transition transform hover:-translate-y-0.5"
+          >
+            <span>Book Appointment</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+
+          <!-- Mobile Hamburger -->
+          <button
+            type="button"
+            id="mobileMenuBtn"
+            onclick="toggleMobileMenu()"
+            class="lg:hidden inline-flex items-center justify-center p-2.5 rounded-xl text-slate-600 hover:text-clinical-700 hover:bg-clinical-50 border border-slate-200 transition"
+            aria-label="Toggle Menu"
+            aria-expanded="false"
+          >
+            <svg id="hamburgerIcon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg id="closeMenuIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Panel -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-slate-200 px-4 pt-3 pb-5 space-y-1 shadow-lg">
+      <a href="#about" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-clinical-50 hover:text-clinical-700">About NovaCare</a>
+      <a href="#departments" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-clinical-50 hover:text-clinical-700">Medical Departments</a>
+      <a href="#doctors" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-clinical-50 hover:text-clinical-700">Doctor Directory</a>
+      <a href="#services" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-clinical-50 hover:text-clinical-700">Services &amp; Packages</a>
+      <a href="#health-hub" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-clinical-50 hover:text-clinical-700">Health Information Hub</a>
+      <a href="#emergency" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-semibold text-emergency-600 hover:bg-emergency-50">24/7 Emergency Center</a>
+      <div class="pt-2">
+        <a href="#appointment" onclick="closeMobileMenu()" class="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-clinical-700 text-white font-semibold shadow-md">
+          Book Appointment Now
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       2. HERO SECTION WITH CROSSFADE SLIDESHOW & QUICK SEARCH
+  ========================================================== -->
+  <section id="top" class="relative overflow-hidden bg-clinical-950 text-white">
+    <!-- Multi-Image Background Slideshow -->
+    <div class="absolute inset-0 z-0" aria-hidden="true">
+      <div class="hero-slide active absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1920&q=80'), linear-gradient(135deg, #042f2e 0%, #0f766e 100%);"></div>
+      <div class="hero-slide absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=1920&q=80'), linear-gradient(135deg, #0f172a 0%, #115e59 100%);"></div>
+      <div class="hero-slide absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1920&q=80'), linear-gradient(135deg, #042f2e 0%, #134e4a 100%);"></div>
+      <!-- Deep Teal Gradient Overlay for Crisp Readability -->
+      <div class="absolute inset-0 bg-gradient-to-r from-clinical-950/95 via-clinical-900/85 to-slate-900/75"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-clinical-950/90 via-transparent to-clinical-950/40"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-20 md:pt-20 md:pb-28">
+      <div class="max-w-3xl">
+        <!-- Accreditation Pill -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-cyan-200 text-xs sm:text-sm font-medium mb-6">
+          <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+          <span>JCI &amp; NABH Accredited Quaternary Care Research Center</span>
+        </div>
+
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] text-white">
+          Advanced Medicine.<br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-teal-200">Compassionate Care.</span>
+        </h1>
+
+        <p class="mt-5 text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl">
+          At NovaCare Multi-Specialty Hospital &amp; Research Center, world-class clinical specialists, robotic diagnostics, and human empathy come together to protect every heartbeat—24 hours a day.
+        </p>
+
+        <!-- Dual CTAs -->
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a href="#appointment" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-clinical-500 hover:bg-clinical-400 text-slate-950 font-bold text-sm sm:text-base shadow-lg shadow-clinical-500/30 transition transform hover:-translate-y-0.5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span>Book Appointment</span>
+          </a>
+          <a href="#emergency" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emergency-600 hover:bg-emergency-700 text-white font-bold text-sm sm:text-base shadow-lg shadow-emergency-600/30 transition transform hover:-translate-y-0.5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <span>24/7 Emergency Care</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Embedded Quick Doctor & Department Search Bar -->
+      <div class="mt-10 max-w-4xl bg-white/95 backdrop-blur-md rounded-2xl p-3 sm:p-4 shadow-2xl border border-white/40 text-slate-800">
+        <form id="heroQuickSearchForm" onsubmit="handleHeroSearch(event)" class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
+          <div class="md:col-span-5 relative">
+            <label for="heroSearchInput" class="sr-only">Search Doctor or Specialty</label>
+            <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input
+              type="text"
+              id="heroSearchInput"
+              placeholder="Search doctor name, condition, or procedure..."
+              class="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-clinical-500 focus:bg-white transition"
+            />
+          </div>
+          <div class="md:col-span-4 relative">
+            <label for="heroDeptSelect" class="sr-only">Filter by Department</label>
+            <select
+              id="heroDeptSelect"
+              class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-clinical-500 focus:bg-white transition"
+            >
+              <option value="All">All Medical Departments</option>
+              <option value="Cardiology">Cardiology</option>
+              <option value="Neurology">Neurology</option>
+              <option value="Orthopedics">Orthopedics</option>
+              <option value="Pediatrics">Pediatrics</option>
+              <option value="Oncology">Oncology</option>
+              <option value="Emergency & Trauma">Emergency &amp; Trauma</option>
+              <option value="Dermatology">Dermatology</option>
+              <option value="General Medicine">General Medicine</option>
+            </select>
+          </div>
+          <div class="md:col-span-3">
+            <button
+              type="submit"
+              class="w-full py-3 px-5 rounded-xl bg-clinical-700 hover:bg-clinical-600 text-white font-semibold text-sm shadow-md transition flex items-center justify-center gap-2"
+            >
+              <span>Find Specialist</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Key Hospital Stats Strip -->
+      <div class="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 sm:p-5">
+          <div class="font-display text-2xl sm:text-3xl font-extrabold text-cyan-300">25+</div>
+          <div class="text-xs sm:text-sm text-slate-200 mt-1 font-medium">Years of Clinical Excellence</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 sm:p-5">
+          <div class="font-display text-2xl sm:text-3xl font-extrabold text-cyan-300">120+</div>
+          <div class="text-xs sm:text-sm text-slate-200 mt-1 font-medium">Board-Certified Specialists</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 sm:p-5">
+          <div class="font-display text-2xl sm:text-3xl font-extrabold text-cyan-300">24/7</div>
+          <div class="text-xs sm:text-sm text-slate-200 mt-1 font-medium">Level-1 Trauma &amp; Critical ICU</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 sm:p-5">
+          <div class="font-display text-2xl sm:text-3xl font-extrabold text-cyan-300">500+</div>
+          <div class="text-xs sm:text-sm text-slate-200 mt-1 font-medium">In-Patient &amp; ICU Beds</div>
+        </div>
+      </div>
+
+      <!-- Slideshow Indicator Dots -->
+      <div class="mt-6 flex items-center gap-2" aria-label="Hero slideshow indicators">
+        <button type="button" onclick="setHeroSlide(0)" class="hero-dot w-8 h-1.5 rounded-full bg-cyan-400 transition-all" aria-label="Slide 1"></button>
+        <button type="button" onclick="setHeroSlide(1)" class="hero-dot w-3 h-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-all" aria-label="Slide 2"></button>
+        <button type="button" onclick="setHeroSlide(2)" class="hero-dot w-3 h-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-all" aria-label="Slide 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       3. HOSPITAL INFORMATION (ABOUT NOVACARE)
+  ========================================================== -->
+  <section id="about" class="scroll-mt-24 py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Left Visual & Accreditations -->
+        <div class="lg:col-span-5 space-y-5">
+          <div class="relative rounded-3xl overflow-hidden shadow-xl border border-slate-100 bg-gradient-to-br from-clinical-800 to-clinical-600 aspect-[4/3]">
+            <img
+              src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1000&q=80"
+              alt="NovaCare Hospital Modern Campus Atrium"
+              onerror="this.onerror=null;this.src='https://placehold.co/800x600/0f766e/ffffff?text=NovaCare+Hospital+Campus';"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-lg flex items-center justify-between gap-3">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-wider text-clinical-700">Patient Satisfaction</p>
+                <p class="font-display text-xl font-extrabold text-slate-900">98.6% Positive Outcomes</p>
+              </div>
+              <div class="w-11 h-11 rounded-xl bg-clinical-100 text-clinical-700 flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accreditation Badges -->
+          <div class="grid grid-cols-3 gap-3">
+            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+              <div class="w-8 h-8 mx-auto rounded-lg bg-clinical-100 text-clinical-700 flex items-center justify-center mb-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+              </div>
+              <div class="font-display font-bold text-xs text-slate-900">JCI Accredited</div>
+              <div class="text-[11px] text-slate-500">Global Gold Seal</div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+              <div class="w-8 h-8 mx-auto rounded-lg bg-clinical-100 text-clinical-700 flex items-center justify-center mb-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+              </div>
+              <div class="font-display font-bold text-xs text-slate-900">NABH Certified</div>
+              <div class="text-[11px] text-slate-500">Patient Safety</div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+              <div class="w-8 h-8 mx-auto rounded-lg bg-clinical-100 text-clinical-700 flex items-center justify-center mb-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div class="font-display font-bold text-xs text-slate-900">ISO 9001:2015</div>
+              <div class="text-[11px] text-slate-500">Quality Systems</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Hospital Overview, Mission, Vision, Core Values -->
+        <div class="lg:col-span-7">
+          <span class="inline-block px-3 py-1 rounded-full bg-clinical-50 text-clinical-700 font-semibold text-xs uppercase tracking-wider mb-3">
+            About NovaCare Research Center
+          </span>
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Setting New Benchmarks in Evidence-Based Healthcare
+          </h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Founded in 2001, <strong>NovaCare Multi-Specialty Hospital &amp; Research Center</strong> is a 500-bed quaternary care institution uniting multidisciplinary specialists, academic medical research, and next-generation surgical technology under one roof. Every patient receives an individualized care roadmap designed for rapid recovery and long-term wellness.
+          </p>
+
+          <!-- Mission & Vision Cards -->
+          <div class="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-5 rounded-2xl bg-clinical-50/70 border border-clinical-100">
+              <div class="flex items-center gap-2.5 mb-2">
+                <span class="w-8 h-8 rounded-lg bg-clinical-700 text-white flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </span>
+                <h3 class="font-display font-bold text-slate-900">Our Mission</h3>
+              </div>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                To deliver accessible, ethical, and life-saving clinical care enriched by continuous research, medical education, and unwavering empathy.
+              </p>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
+              <div class="flex items-center gap-2.5 mb-2">
+                <span class="w-8 h-8 rounded-lg bg-slate-800 text-white flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                </span>
+                <h3 class="font-display font-bold text-slate-900">Our Vision</h3>
+              </div>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                To be the region's most trusted destination for complex multi-specialty treatments, pioneering digital health and zero-harm patient safety.
+              </p>
+            </div>
+          </div>
+
+          <!-- Core Values Pills -->
+          <div class="mt-6">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Our Core Values</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-700 shadow-sm">Patient-First Compassion</span>
+              <span class="px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-700 shadow-sm">Clinical Precision</span>
+              <span class="px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-700 shadow-sm">Transparent Ethics</span>
+              <span class="px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-700 shadow-sm">Medical Innovation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Facility Highlights Strip -->
+      <div class="mt-14 pt-10 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+          <div class="w-11 h-11 rounded-xl bg-clinical-100 text-clinical-700 flex items-center justify-center shrink-0">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+          </div>
+          <div>
+            <h4 class="font-display font-bold text-sm text-slate-900">14 Modular OTs</h4>
+            <p class="text-xs text-slate-600 mt-1">HEPA-filtered laminar airflow suites equipped for robotic &amp; hybrid surgeries.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+          <div class="w-11 h-11 rounded-xl bg-clinical-100 text-clinical-700 flex items-center justify-center shrink-0">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <div>
+            <h4 class="font-display font-bold text-sm text-slate-900">Digital 3T Radiology</h4>
+            <p class="text-xs text-slate-600 mt-1">Ultra-low radiation 128-slice CT, 3-Tesla MRI, PET-CT, and digital mammography.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+          <div class="w-11 h-11 rounded-xl bg-clinical-100 text-clinical-700 flex items-center justify-center shrink-0">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <div>
+            <h4 class="font-display font-bold text-sm text-slate-900">24/7 Clinical Pharmacy</h4>
+            <p class="text-xs text-slate-600 mt-1">Temperature-controlled biologics, oncology drugs, and bedside discharge dispensing.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+          <div class="w-11 h-11 rounded-xl bg-clinical-100 text-clinical-700 flex items-center justify-center shrink-0">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </div>
+          <div>
+            <h4 class="font-display font-bold text-sm text-slate-900">100-Bed Smart ICU</h4>
+            <p class="text-xs text-slate-600 mt-1">Dedicated Cardiac, Neuro, Surgical, and Level-III Neonatal ICUs with 1:1 nursing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       4. MEDICAL DEPARTMENTS SECTION (8 CORE CENTERS)
+  ========================================================== -->
+  <section id="departments" class="scroll-mt-24 py-16 md:py-24 bg-slate-50 border-y border-slate-200/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="inline-block px-3 py-1 rounded-full bg-clinical-100 text-clinical-800 font-semibold text-xs uppercase tracking-wider mb-3">
+          Centers of Excellence
+        </span>
+        <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Specialized Medical Departments
+        </h2>
+        <p class="mt-3 text-slate-600">
+          Explore our 8 clinical centers staffed by fellowship-trained consultants and backed by integrated diagnostics.
+        </p>
+      </div>
+
+      <!-- Departments Grid (Populated via JS for clean interactivity) -->
+      <div id="departmentsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       5. DOCTOR PROFILES DIRECTORY
+  ========================================================== -->
+  <section id="doctors" class="scroll-mt-24 py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div class="max-w-2xl">
+          <span class="inline-block px-3 py-1 rounded-full bg-clinical-50 text-clinical-700 font-semibold text-xs uppercase tracking-wider mb-3">
+            Meet Our Specialists
+          </span>
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Find Your Specialist Doctor
+          </h2>
+          <p class="mt-3 text-slate-600">
+            Search our directory of board-certified physicians, inspect credentials, and book your consultation directly.
+          </p>
+        </div>
+
+        <!-- Search Input -->
+        <div class="w-full md:w-80 relative">
+          <label for="doctorSearchInput" class="sr-only">Search doctors by name or specialty</label>
+          <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input
+            type="text"
+            id="doctorSearchInput"
+            oninput="renderDoctors()"
+            placeholder="Search name, degree, or skill..."
+            class="w-full pl-11 pr-10 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-clinical-500 focus:bg-white transition"
+          />
+          <button
+            type="button"
+            id="clearDoctorSearchBtn"
+            onclick="resetDoctorFilters()"
+            class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700"
+            aria-label="Clear search"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Department Filter Tabs -->
+      <div id="doctorFilterTabs" class="flex flex-wrap items-center gap-2 mb-8 pb-2" role="tablist" aria-label="Filter doctors by department"></div>
+
+      <!-- Results Count -->
+      <div class="flex items-center justify-between text-sm text-slate-500 mb-6">
+        <span id="doctorCountLabel">Showing specialists</span>
+        <button type="button" id="resetFilterLink" onclick="resetDoctorFilters()" class="hidden text-clinical-700 font-semibold hover:underline">Reset Filters</button>
+      </div>
+
+      <!-- Doctors Cards Grid -->
+      <div id="doctorsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+
+      <!-- Empty State -->
+      <div id="doctorsEmptyState" class="hidden text-center py-14 px-6 rounded-3xl bg-slate-50 border border-dashed border-slate-300">
+        <div class="w-14 h-14 mx-auto rounded-2xl bg-slate-200/70 text-slate-500 flex items-center justify-center mb-4">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-lg text-slate-800">No matching specialists found</h3>
+        <p class="text-sm text-slate-500 mt-1">Try adjusting your search keywords or selecting "All" departments.</p>
+        <button type="button" onclick="resetDoctorFilters()" class="mt-4 px-5 py-2.5 rounded-xl bg-clinical-700 text-white text-sm font-semibold hover:bg-clinical-600 transition">
+          Show All Doctors
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       6. MEDICAL SERVICES & PREVENTIVE HEALTH PACKAGES
+  ========================================================== -->
+  <section id="services" class="scroll-mt-24 py-16 md:py-24 bg-slate-50 border-y border-slate-200/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="inline-block px-3 py-1 rounded-full bg-clinical-100 text-clinical-800 font-semibold text-xs uppercase tracking-wider mb-3">
+          Comprehensive Clinical Services
+        </span>
+        <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          End-to-End Care Under One Roof
+        </h2>
+        <p class="mt-3 text-slate-600">
+          From rapid emergency stabilization and precision radiology to video teleconsultations and preventive wellness screening.
+        </p>
+      </div>
+
+      <!-- 6 Core Services Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Service 1 -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-card hover:shadow-soft hover:-translate-y-1 transition">
+          <div class="w-12 h-12 rounded-xl bg-emergency-50 text-emergency-600 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-lg text-slate-900">24/7 Emergency &amp; ALS Ambulance</h3>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+            GPS-enabled Advanced Life Support ambulances with onboard defibrillators, ventilators, and instant trauma-bay pre-alerts.
+          </p>
+          <a href="#emergency" class="inline-flex items-center gap-1.5 mt-4 text-xs font-bold text-emergency-600 hover:text-emergency-700">
+            Emergency Contacts &rarr;
+          </a>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-card hover:shadow-soft hover:-translate-y-1 transition">
+          <div class="w-12 h-12 rounded-xl bg-clinical-50 text-clinical-700 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-lg text-slate-900">Advanced Diagnostics &amp; Lab</h3>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+            3-Tesla MRI, 128-Slice CT Angiography, Molecular Pathology, and same-day digital lab reporting accessible online.
+          </p>
+          <button type="button" onclick="prebookPackage('General Medicine', 'Diagnostic Imaging / Lab Consultation')" class="inline-flex items-center gap-1.5 mt-4 text-xs font-bold text-clinical-700 hover:text-clinical-600">
+            Schedule Lab Test &rarr;
+          </button>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-card hover:shadow-soft hover:-translate-y-1 transition">
+          <div class="w-12 h-12 rounded-xl bg-cyan-50 text-cyan-700 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-lg text-slate-900">Telemedicine Video Consults</h3>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+            Encrypted HD video consultations with NovaCare specialists from home, complete with digital e-prescriptions and follow-ups.
+          </p>
+          <button type="button" onclick="prebookTelemedicine()" class="inline-flex items-center gap-1.5 mt-4 text-xs font-bold text-clinical-700 hover:text-clinical-600">
+            Book Video Consult &rarr;
+          </button>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-card hover:shadow-soft hover:-translate-y-1 transition">
+          <div class="w-12 h-12 rounded-xl bg-clinical-50 text-clinical-700 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-lg text-slate-900">Critical Care, ICU &amp; Level-III NICU</h3>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+            Round-the-clock intensivists, ECMO life support, and specialized Neonatal ICU suites for high-risk newborns and premature infants.
+          </p>
+          <button type="button" onclick="openDepartmentModal('Pediatrics')" class="inline-flex items-center gap-1.5 mt-4 text-xs font-bold text-clinical-700 hover:text-clinical-600">
+            Explore NICU Care &rarr;
+          </button>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-card hover:shadow-soft hover:-translate-y-1 transition">
+          <div class="w-12 h-12 rounded-xl bg-clinical-50 text-clinical-700 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-lg text-slate-900">24/7 Pharmacy &amp; Home Healthcare</h3>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+            Authentic prescription dispensing, home sample collection, post-operative physiotherapy, and trained home-nursing care.
+          </p>
+          <button type="button" onclick="prebookPackage('General Medicine', 'Home Healthcare / Nursing Care Inquiry')" class="inline-flex items-center gap-1.5 mt-4 text-xs font-bold text-clinical-700 hover:text-clinical-600">
+            Request Home Care &rarr;
+          </button>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-card hover:shadow-soft hover:-translate-y-1 transition">
+          <div class="w-12 h-12 rounded-xl bg-clinical-50 text-clinical-700 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-lg text-slate-900">Preventive Wellness &amp; Screenings</h3>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+            Curated full-body checkup panels tailored for young adults, corporate executives, senior citizens, and cardiac risk profiles.
+          </p>
+          <a href="#health-packages" class="inline-flex items-center gap-1.5 mt-4 text-xs font-bold text-clinical-700 hover:text-clinical-600">
+            View Packages Below &darr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Preventive Health Checkup Packages -->
+      <div id="health-packages" class="mt-16 pt-12 border-t border-slate-200">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-clinical-700">Preventive Healthcare</span>
+            <h3 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+              Annual Health Checkup Packages
+            </h3>
+          </div>
+          <p class="text-sm text-slate-600 max-w-md">
+            All packages include fasting blood sample collection, complimentary healthy breakfast, and physician review.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Tier 1: Basic -->
+          <div class="bg-white rounded-3xl p-7 border border-slate-200 shadow-card flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-bold">Essential Care</span>
+                <span class="text-xs text-slate-500">42 Parameters</span>
+              </div>
+              <h4 class="font-display text-xl font-bold text-slate-900 mt-4">Basic Wellness Checkup</h4>
+              <div class="mt-3 flex items-baseline gap-1">
+                <span class="font-display text-4xl font-extrabold text-slate-900">$99</span>
+                <span class="text-sm text-slate-500">/ person</span>
+              </div>
+              <ul class="mt-6 space-y-3 text-sm text-slate-600">
+                <li class="flex items-center gap-2.5"><svg class="w-4 h-4 text-clinical-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Complete Blood Count (CBC) &amp; ESR</li>
+                <li class="flex items-center gap-2.5"><svg class="w-4 h-4 text-clinical-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Fasting Blood Glucose &amp; HbA1c</li>
+                <li class="flex items-center gap-2.5"><svg class="w-4 h-4 text-clinical-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Lipid, Liver &amp; Kidney Function Panel</li>
+                <li class="flex items-center gap-2.5"><svg class="w-4 h-4 text-clinical-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>12-Lead Resting ECG &amp; Physician Consult</li>
+              </ul>
+            </div>
+            <button
+              type="button"
+              onclick="prebookPackage('General Medicine', 'Basic Wellness Checkup Package ($99)')"
+              class="mt-8 w-full py-3 rounded-xl border-2 border-clinical-700 text-clinical-700 hover:bg-clinical-700 hover:text-white font-bold text-sm transition"
+            >
+              Book Basic Package
+            </button>
+          </div>
+
+          <!-- Tier 2: Executive (Highlighted) -->
+          <div class="bg-clinical-900 text-white rounded-3xl p-7 shadow-xl relative overflow-hidden flex flex-col justify-between ring-2 ring-clinical-500">
+            <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-cyan-400 text-slate-950 text-[11px] font-extrabold uppercase tracking-wider">
+              Most Popular
+            </div>
+            <div>
+              <span class="px-3 py-1 rounded-full bg-white/15 text-cyan-200 text-xs font-bold">78 Parameters</span>
+              <h4 class="font-display text-xl font-bold mt-4">Executive Comprehensive</h4>
+              <div class="mt-3 flex items-baseline gap-1">
+                <span class="font-display text-4xl font-extrabold text-white">$249</span>
+                <span class="text-sm text-teal-200">/ person</span>
+              </div>
+              <ul class="mt-6 space-y-3 text-sm text-teal-50">
+                <li class="flex items-center gap-2.5"><svg class="w-4 h-4 text-cyan-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Everything in Basic Wellness Checkup</li>
+                <li class="flex items-center gap-2.5"><svg class="w-4 h-4 text-cyan-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Complete Thyroid (T3, T4, TSH) &amp; Vitamin D/B12</li>
+                <li class="flex items-center gap-2.5"><svg class="w-4 h-4 text-cyan-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Ultrasound Whole Abdomen &amp; Digital Chest X-Ray</li>
+                <li class="flex items-center gap-2.5"><svg class="w-4 h-4 text-cyan-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Pulmonary Function Test + Dietitian Counseling</li>
+              </ul>
+            </div>
+            <button
+              type="button"
+              onclick="prebookPackage('General Medicine', 'Executive Comprehensive Health Package ($249)')"
+              class="mt-8 w-full py-3 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-sm shadow-lg transition"
+            >
+              Book Executive Package
+            </button>
+          </div>
+
+          <!-- Tier 3: Cardiac -->
+          <div class="bg-white rounded-3xl p-7 border border-slate-200 shadow-card flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full bg-clinical-50 text-clinical-700 text-xs font-bold">Heart &amp; Metabolic</span>
+                <span class="text-xs text-slate-500">95 Parameters</span>
+              </div>
+              <h4 class="font-display text-xl font-bold text-slate-900 mt-4">Advanced Cardiac Shield</h4>
+              <div class="mt-3 flex items-baseline gap-1">
+                <span class="font-display text-4xl font-extrabold text-slate-900">$349</span>
+                <span class="text-sm text-slate-500">/ person</span>
+              </div>
+              <ul class="mt-6 space-y-3 text-sm text-slate-600">
+                <li class="flex items-center gap-2.5"><svg class="w-4 h-4 text-clinical-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Everything in Executive Comprehensive</li>
+                <li class="flex items-center gap-2.5"><svg class="w-4 h-4 text-clinical-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>2D Echocardiography &amp; Treadmill Stress Test (TMT)</li>
+                <li class="flex items-center gap-2.5"><svg class="w-4 h-4 text-clinical-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>hs-CRP, ApoB, Lipoprotein(a) Cardiac Biomarkers</li>
+                <li class="flex items-center gap-2.5"><svg class="w-4 h-4 text-clinical-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Senior Cardiologist 1-on-1 Risk Assessment</li>
+              </ul>
+            </div>
+            <button
+              type="button"
+              onclick="prebookPackage('Cardiology', 'Advanced Cardiac Shield Checkup Package ($349)')"
+              class="mt-8 w-full py-3 rounded-xl border-2 border-clinical-700 text-clinical-700 hover:bg-clinical-700 hover:text-white font-bold text-sm transition"
+            >
+              Book Cardiac Shield
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       7. INTERACTIVE APPOINTMENT BOOKING SYSTEM
+  ========================================================== -->
+  <section id="appointment" class="scroll-mt-24 py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <!-- Left Info Column -->
+        <div class="lg:col-span-5 space-y-6">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full bg-clinical-50 text-clinical-700 font-semibold text-xs uppercase tracking-wider mb-3">
+              Instant Online Scheduling
+            </span>
+            <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+              Book Your Appointment
+            </h2>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              Skip waiting room queues. Choose an in-person OPD visit or a secure HD video teleconsultation and receive an instant booking reference ID.
+            </p>
+          </div>
+
+          <!-- 3-Step Booking Guide -->
+          <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200/80 space-y-4">
+            <h3 class="font-display font-bold text-slate-900">How It Works</h3>
+            <div class="flex items-start gap-3.5">
+              <span class="w-7 h-7 rounded-full bg-clinical-700 text-white text-xs font-bold flex items-center justify-center shrink-0">1</span>
+              <div>
+                <h4 class="text-sm font-bold text-slate-800">Select Department &amp; Specialist</h4>
+                <p class="text-xs text-slate-600 mt-0.5">Choose your clinical department and pick from available board-certified doctors.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <span class="w-7 h-7 rounded-full bg-clinical-700 text-white text-xs font-bold flex items-center justify-center shrink-0">2</span>
+              <div>
+                <h4 class="text-sm font-bold text-slate-800">Pick Date &amp; Time Slot</h4>
+                <p class="text-xs text-slate-600 mt-0.5">Choose a convenient Morning, Afternoon, or Evening consultation slot.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <span class="w-7 h-7 rounded-full bg-clinical-700 text-white text-xs font-bold flex items-center justify-center shrink-0">3</span>
+              <div>
+                <h4 class="text-sm font-bold text-slate-800">Instant Confirmation Slip</h4>
+                <p class="text-xs text-slate-600 mt-0.5">Get a unique Booking Reference ID saved directly to your "My Bookings" drawer.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- OPD Consultation Hours -->
+          <div class="p-6 rounded-3xl bg-clinical-900 text-white space-y-3">
+            <div class="flex items-center gap-2 text-cyan-300 font-bold text-sm">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>OPD &amp; Consultation Timings</span>
+            </div>
+            <div class="text-sm space-y-2 text-teal-100">
+              <div class="flex justify-between border-b border-white/10 pb-2">
+                <span>Monday – Friday</span>
+                <span class="font-semibold text-white">08:30 AM – 08:00 PM</span>
+              </div>
+              <div class="flex justify-between border-b border-white/10 pb-2">
+                <span>Saturday</span>
+                <span class="font-semibold text-white">09:00 AM – 06:00 PM</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Sunday &amp; Holidays</span>
+                <span class="font-semibold text-cyan-300">24/7 Emergency &amp; Tele-OPD</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accepted Insurance Partners -->
+          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
+            <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Cashless Insurance Partners</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-bold text-slate-700">BlueCross Shield</span>
+              <span class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-bold text-slate-700">Aetna Health</span>
+              <span class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-bold text-slate-700">UnitedHealthcare</span>
+              <span class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-bold text-slate-700">Cigna Global</span>
+              <span class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-bold text-slate-700">Medicare / TPA</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Interactive Booking Form -->
+        <div class="lg:col-span-7">
+          <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-soft">
+            <form id="appointmentForm" onsubmit="handleAppointmentSubmit(event)" novalidate class="space-y-6">
+              <!-- Consultation Type Toggle -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2.5">Consultation Mode</label>
+                <div class="grid grid-cols-2 gap-3 p-1.5 bg-slate-100 rounded-2xl">
+                  <button
+                    type="button"
+                    id="modeInPersonBtn"
+                    onclick="setConsultMode('In-Person Visit')"
+                    class="py-2.5 px-4 rounded-xl text-sm font-bold transition flex items-center justify-center gap-2 bg-white text-clinical-800 shadow-sm"
+                  >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5"/></svg>
+                    <span>In-Person Visit</span>
+                  </button>
+                  <button
+                    type="button"
+                    id="modeVideoBtn"
+                    onclick="setConsultMode('Video Teleconsultation')"
+                    class="py-2.5 px-4 rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900"
+                  >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                    <span>Video Teleconsult</span>
+                  </button>
+                </div>
+                <input type="hidden" id="bookingMode" value="In-Person Visit" />
+              </div>
+
+              <!-- Department & Doctor Dropdowns -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="bookingDepartment" class="block text-sm font-semibold text-slate-700 mb-1.5">Department <span class="text-emergency-600">*</span></label>
+                  <select
+                    id="bookingDepartment"
+                    onchange="updateBookingDoctorsList()"
+                    required
+                    class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-clinical-500 focus:bg-white transition"
+                  >
+                    <option value="">Select Department</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="bookingDoctor" class="block text-sm font-semibold text-slate-700 mb-1.5">Preferred Doctor <span class="text-emergency-600">*</span></label>
+                  <select
+                    id="bookingDoctor"
+                    required
+                    class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-clinical-500 focus:bg-white transition"
+                  >
+                    <option value="">Select Department First</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Preferred Date & Patient Age -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="bookingDate" class="block text-sm font-semibold text-slate-700 mb-1.5">Preferred Date <span class="text-emergency-600">*</span></label>
+                  <input
+                    type="date"
+                    id="bookingDate"
+                    required
+                    class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-clinical-500 focus:bg-white transition"
+                  />
+                </div>
+                <div>
+                  <label for="patientAge" class="block text-sm font-semibold text-slate-700 mb-1.5">Patient Age (Years) <span class="text-emergency-600">*</span></label>
+                  <input
+                    type="number"
+                    id="patientAge"
+                    min="0"
+                    max="120"
+                    placeholder="e.g., 34"
+                    required
+                    class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-clinical-500 focus:bg-white transition"
+                  />
+                </div>
+              </div>
+
+              <!-- Interactive Time Slot Selector Pills -->
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <label class="block text-sm font-semibold text-slate-700">Select Time Slot <span class="text-emergency-600">*</span></label>
+                  <span id="selectedSlotBadge" class="text-xs font-bold text-clinical-700">No slot selected</span>
+                </div>
+                <input type="hidden" id="bookingTimeSlot" value="" />
+
+                <div class="space-y-3 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
+                  <div>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 block mb-2">Morning</span>
+                    <div class="flex flex-wrap gap-2" id="morningSlots"></div>
+                  </div>
+                  <div>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 block mb-2">Afternoon</span>
+                    <div class="flex flex-wrap gap-2" id="afternoonSlots"></div>
+                  </div>
+                  <div>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 block mb-2">Evening</span>
+                    <div class="flex flex-wrap gap-2" id="eveningSlots"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Patient Details -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="sm:col-span-2">
+                  <label for="patientName" class="block text-sm font-semibold text-slate-700 mb-1.5">Patient Full Name <span class="text-emergency-600">*</span></label>
+                  <input
+                    type="text"
+                    id="patientName"
+                    placeholder="Enter patient's full legal name"
+                    required
+                    class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-clinical-500 focus:bg-white transition"
+                  />
+                </div>
+                <div>
+                  <label for="patientPhone" class="block text-sm font-semibold text-slate-700 mb-1.5">Phone Number <span class="text-emergency-600">*</span></label>
+                  <input
+                    type="tel"
+                    id="patientPhone"
+                    placeholder="+1 (555) 234-5678"
+                    required
+                    class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-clinical-500 focus:bg-white transition"
+                  />
+                </div>
+                <div>
+                  <label for="patientEmail" class="block text-sm font-semibold text-slate-700 mb-1.5">Email Address <span class="text-emergency-600">*</span></label>
+                  <input
+                    type="email"
+                    id="patientEmail"
+                    placeholder="patient@example.com"
+                    required
+                    class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-clinical-500 focus:bg-white transition"
+                  />
+                </div>
+              </div>
+
+              <!-- Symptoms / Notes -->
+              <div>
+                <label for="patientSymptoms" class="block text-sm font-semibold text-slate-700 mb-1.5">Brief Symptoms / Reason for Visit</label>
+                <textarea
+                  id="patientSymptoms"
+                  rows="3"
+                  placeholder="Describe symptoms, duration, or checkup package requested..."
+                  class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-clinical-500 focus:bg-white transition resize-none"
+                ></textarea>
+              </div>
+
+              <!-- Inline Validation Feedback Box -->
+              <div id="bookingFormError" class="hidden p-3.5 rounded-xl bg-emergency-50 border border-red-200 text-emergency-700 text-sm font-medium flex items-center gap-2.5">
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span id="bookingFormErrorText">Please complete all required fields.</span>
+              </div>
+
+              <!-- Submit Button -->
+              <button
+                type="submit"
+                class="w-full py-4 px-6 rounded-2xl bg-clinical-700 hover:bg-clinical-600 text-white font-bold text-base shadow-lg shadow-clinical-700/25 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Confirm Appointment</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       8. HEALTH INFORMATION HUB (ARTICLES + BMI CALCULATOR + FAQ)
+  ========================================================== -->
+  <section id="health-hub" class="scroll-mt-24 py-16 md:py-24 bg-slate-50 border-y border-slate-200/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div class="max-w-2xl">
+          <span class="inline-block px-3 py-1 rounded-full bg-clinical-100 text-clinical-800 font-semibold text-xs uppercase tracking-wider mb-3">
+            Patient Education &amp; Wellness
+          </span>
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Health Information Hub
+          </h2>
+          <p class="mt-3 text-slate-600">
+            Peer-reviewed medical guides authored by NovaCare consultants, interactive wellness tools, and answers to common patient questions.
+          </p>
+        </div>
+
+        <!-- Article Category Filters -->
+        <div id="articleCategoryTabs" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <!-- Health Articles Grid -->
+      <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+      <!-- Interactive BMI Calculator + FAQ Grid -->
+      <div class="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Quick Health Check: BMI Calculator Widget -->
+        <div class="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-card">
+          <div class="flex items-center justify-between gap-3 mb-5">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-clinical-700">Quick Health Check</span>
+              <h3 class="font-display text-xl font-extrabold text-slate-900 mt-0.5">BMI Wellness Calculator</h3>
+            </div>
+            <!-- Unit Toggle -->
+            <div class="inline-flex rounded-xl bg-slate-100 p-1 text-xs font-bold">
+              <button type="button" id="bmiMetricBtn" onclick="setBmiUnit('metric')" class="px-3 py-1.5 rounded-lg bg-white text-clinical-700 shadow-sm transition">Metric</button>
+              <button type="button" id="bmiImperialBtn" onclick="setBmiUnit('imperial')" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition">Imperial</button>
+            </div>
+          </div>
+
+          <form id="bmiForm" onsubmit="calculateBMI(event)" class="space-y-4">
+            <!-- Metric Inputs -->
+            <div id="bmiMetricInputs" class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="bmiHeightCm" class="block text-xs font-semibold text-slate-600 mb-1.5">Height (cm)</label>
+                <input type="number" id="bmiHeightCm" value="172" min="50" max="250" step="0.5" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-clinical-500" />
+              </div>
+              <div>
+                <label for="bmiWeightKg" class="block text-xs font-semibold text-slate-600 mb-1.5">Weight (kg)</label>
+                <input type="number" id="bmiWeightKg" value="68" min="15" max="300" step="0.5" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-clinical-500" />
+              </div>
+            </div>
+
+            <!-- Imperial Inputs -->
+            <div id="bmiImperialInputs" class="hidden grid grid-cols-3 gap-3">
+              <div>
+                <label for="bmiHeightFt" class="block text-xs font-semibold text-slate-600 mb-1.5">Height (ft)</label>
+                <input type="number" id="bmiHeightFt" value="5" min="2" max="8" class="w-full px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-clinical-500" />
+              </div>
+              <div>
+                <label for="bmiHeightIn" class="block text-xs font-semibold text-slate-600 mb-1.5">Height (in)</label>
+                <input type="number" id="bmiHeightIn" value="8" min="0" max="11" class="w-full px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-clinical-500" />
+              </div>
+              <div>
+                <label for="bmiWeightLbs" class="block text-xs font-semibold text-slate-600 mb-1.5">Weight (lbs)</label>
+                <input type="number" id="bmiWeightLbs" value="150" min="35" max="660" class="w-full px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-clinical-500" />
+              </div>
+            </div>
+
+            <button type="submit" class="w-full py-3 rounded-xl bg-clinical-700 hover:bg-clinical-600 text-white font-bold text-sm transition shadow-sm">
+              Calculate My BMI
+            </button>
+          </form>
+
+          <!-- BMI Result Box -->
+          <div id="bmiResultCard" class="mt-5 p-4 rounded-2xl bg-clinical-50 border border-clinical-100">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs text-slate-500 font-medium">Your BMI Score</span>
+                <div id="bmiScoreValue" class="font-display text-3xl font-extrabold text-clinical-800">23.0</div>
+              </div>
+              <span id="bmiCategoryBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
+                Healthy Weight
+              </span>
+            </div>
+
+            <!-- Visual Spectrum Bar -->
+            <div class="mt-4">
+              <div class="relative h-2.5 rounded-full overflow-hidden flex bg-slate-200">
+                <div class="w-[22%] bg-sky-400" title="Underweight"></div>
+                <div class="w-[28%] bg-emerald-500" title="Normal"></div>
+                <div class="w-[22%] bg-amber-400" title="Overweight"></div>
+                <div class="w-[28%] bg-rose-500" title="Obese"></div>
+              </div>
+              <div class="relative h-4 mt-0.5">
+                <div id="bmiMarker" class="absolute -top-1 -translate-x-1/2 transition-all duration-500" style="left: 42%;">
+                  <div class="w-3 h-3 rotate-45 bg-slate-900 mx-auto"></div>
+                </div>
+              </div>
+              <div class="flex justify-between text-[10px] font-semibold text-slate-400 mt-0.5">
+                <span>15</span>
+                <span>18.5</span>
+                <span>25</span>
+                <span>30</span>
+                <span>40+</span>
+              </div>
+            </div>
+
+            <p id="bmiTipText" class="mt-3 text-xs text-slate-600 leading-relaxed">
+              Great job! Your weight falls within the healthy range. Maintain balanced nutrition and 150 minutes of weekly aerobic activity.
+            </p>
+          </div>
+        </div>
+
+        <!-- Expandable Patient FAQ Accordion -->
+        <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-card">
+          <div class="mb-6">
+            <span class="text-xs font-bold uppercase tracking-wider text-clinical-700">Patient Support</span>
+            <h3 class="font-display text-2xl font-extrabold text-slate-900 mt-1">Frequently Asked Questions</h3>
+          </div>
+          <div id="faqAccordion" class="divide-y divide-slate-200"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       9. EMERGENCY CONTACTS & HOSPITAL LOCATION
+  ========================================================== -->
+  <section id="emergency" class="scroll-mt-24 py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- High-Visibility Emergency Command Center Banner -->
+      <div class="rounded-3xl bg-gradient-to-br from-emergency-700 via-emergency-600 to-rose-700 text-white p-6 sm:p-10 shadow-xl relative overflow-hidden">
+        <div class="absolute -right-12 -top-12 w-56 h-56 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
+
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-white/20">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm text-xs font-bold uppercase tracking-wider mb-3">
+              <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+              <span>24/7 Rapid Response Command Center</span>
+            </div>
+            <h2 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight">
+              Emergency Contacts &amp; Trauma Desk
+            </h2>
+            <p class="mt-2 text-red-100 max-w-2xl text-sm sm:text-base">
+              In a life-threatening emergency, tap any helpline below to call immediately or copy the number. Our Level-1 Trauma &amp; Cardiac Emergency Bay operates 24/7/365.
+            </p>
+          </div>
+          <a href="tel:+18009112273" class="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-2xl bg-white text-emergency-700 hover:bg-red-50 font-extrabold text-base shadow-lg shrink-0 transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <span>Call 1-800-911-CARE</span>
+          </a>
+        </div>
+
+        <!-- 6 Emergency Direct Contacts Grid -->
+        <div id="emergencyContactsGrid" class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+        <!-- When to Visit the ER Checklist -->
+        <div class="mt-8 bg-black/20 backdrop-blur-sm rounded-2xl p-5 border border-white/15">
+          <h3 class="font-display font-bold text-sm uppercase tracking-wider text-red-100 mb-3 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <span>When to Visit the ER Immediately</span>
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 text-xs sm:text-sm text-white/95">
+            <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-white"></span>Chest pain, pressure, or shortness of breath</div>
+            <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-white"></span>Sudden facial drooping, weakness, or slurred speech</div>
+            <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-white"></span>Severe trauma, fractures, or uncontrolled bleeding</div>
+            <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-white"></span>Loss of consciousness, seizures, or head injury</div>
+            <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-white"></span>High fever (&gt;103°F) with stiff neck or confusion</div>
+            <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-white"></span>Severe allergic reaction (swelling of throat/lips)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Campus Map & General Inquiry Contact Form -->
+      <div class="mt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <!-- Interactive Campus Location Card -->
+        <div class="lg:col-span-6 bg-slate-50 rounded-3xl p-6 sm:p-7 border border-slate-200 flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-clinical-700">Visit Our Campus</span>
+            <h3 class="font-display text-2xl font-extrabold text-slate-900 mt-1">NovaCare Main Medical Campus</h3>
+            <p class="text-sm text-slate-600 mt-2">
+              450 Health Sciences Boulevard, Medical District, Metro City, MC 500081
+            </p>
+
+            <!-- Interactive Styled Campus Map Visual -->
+            <div class="mt-5 relative rounded-2xl overflow-hidden bg-gradient-to-br from-teal-950 via-clinical-900 to-slate-900 p-5 text-white border border-clinical-800 shadow-inner">
+              <!-- Grid road lines SVG -->
+              <svg class="w-full h-56" viewBox="0 0 500 240" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NovaCare Hospital Interactive Campus Map">
+                <!-- Background grid -->
+                <path d="M0 60 H500 M0 120 H500 M0 180 H500 M125 0 V240 M250 0 V240 M375 0 V240" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <!-- Main Roads -->
+                <path d="M0 195 H500" stroke="#334155" stroke-width="22"/>
+                <path d="M0 195 H500" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="10 8"/>
+                <path d="M80 0 V240" stroke="#334155" stroke-width="16"/>
+                <!-- Campus Grounds -->
+                <rect x="108" y="22" width="365" height="150" rx="18" fill="#0f766e" fill-opacity="0.32" stroke="#2dd4bf" stroke-opacity="0.4" stroke-width="1.5"/>
+                <!-- Main Hospital Block -->
+                <rect x="200" y="42" width="145" height="65" rx="10" fill="#0d9488" stroke="#99f6e4" stroke-width="1.5"/>
+                <text x="272" y="72" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">MAIN HOSPITAL</text>
+                <text x="272" y="88" fill="#ccfbf1" font-size="9" text-anchor="middle">OPD &amp; Inpatient Tower</text>
+                <!-- Emergency Trauma Wing -->
+                <rect x="122" y="116" width="112" height="44" rx="8" fill="#dc2626" stroke="#fecaca" stroke-width="1.5"/>
+                <text x="178" y="136" fill="#ffffff" font-size="10" font-weight="700" text-anchor="middle">24/7 ER &amp; TRAUMA</text>
+                <text x="178" y="149" fill="#fee2e2" font-size="8.5" text-anchor="middle">Gate 1 Ambulance Bay</text>
+                <!-- Diagnostics & Research -->
+                <rect x="360" y="42" width="98" height="58" rx="8" fill="#0e7490" stroke="#a5f3fc" stroke-width="1.5"/>
+                <text x="409" y="68" fill="#ffffff" font-size="9.5" font-weight="700" text-anchor="middle">DIAGNOSTICS</text>
+                <text x="409" y="82" fill="#cffafe" font-size="8.5" text-anchor="middle">MRI / CT / Labs</text>
+                <!-- Visitor Parking -->
+                <rect x="252" y="120" width="102" height="40" rx="8" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
+                <text x="303" y="144" fill="#e2e8f0" font-size="9.5" font-weight="700" text-anchor="middle">P  MULTI-LEVEL PARKING</text>
+                <!-- Road Label -->
+                <text x="290" y="200" fill="#cbd5e1" font-size="9" font-weight="600" text-anchor="middle">HEALTH SCIENCES BOULEVARD</text>
+              </svg>
+
+              <!-- Interactive Campus Gate Badges -->
+              <div class="mt-3 flex flex-wrap gap-2 text-[11px]">
+                <button type="button" onclick="showCampusInfo('Gate 1 — Emergency & Ambulance Bay: Direct 24/7 rapid-entry ramp directly into Trauma Resuscitation.')" class="px-2.5 py-1 rounded-lg bg-emergency-600/90 hover:bg-emergency-600 font-semibold transition">Gate 1: ER Bay</button>
+                <button type="button" onclick="showCampusInfo('Gate 2 — Main OPD Atrium: Valet parking, wheelchair assistance, and Central Registration Desk.')" class="px-2.5 py-1 rounded-lg bg-white/15 hover:bg-white/25 font-semibold transition">Gate 2: Main OPD</button>
+                <button type="button" onclick="showCampusInfo('East Wing — Diagnostics & Pharmacy: 24/7 Pharmacy, NABL Pathology Lab, and 3T MRI Center.')" class="px-2.5 py-1 rounded-lg bg-white/15 hover:bg-white/25 font-semibold transition">East Wing: Labs</button>
+              </div>
+              <p id="campusHighlightText" class="mt-3 text-xs text-cyan-200 bg-black/25 px-3 py-2 rounded-xl">
+                Tap a campus gate above to view entry &amp; parking directions.
+              </p>
+            </div>
+          </div>
+
+          <!-- Directions & Contact Summary -->
+          <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-600">
+            <div class="p-3.5 rounded-xl bg-white border border-slate-200">
+              <strong class="block text-slate-900 mb-0.5">Public Transit &amp; Valet</strong>
+              <span>200m from Medical Center Metro Station. Free valet parking for patients &amp; seniors.</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white border border-slate-200">
+              <strong class="block text-slate-900 mb-0.5">General Reception Desk</strong>
+              <span>+1 (555) 234-8000 &bull; care@novacarehospital.org</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- General Inquiry Form -->
+        <div class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-card">
+          <span class="text-xs font-bold uppercase tracking-wider text-clinical-700">Have a Question?</span>
+          <h3 class="font-display text-2xl font-extrabold text-slate-900 mt-1">Send Us a General Inquiry</h3>
+          <p class="text-sm text-slate-600 mt-1.5">
+            For billing queries, medical records, corporate tie-ups, or feedback, our patient relations team responds within 2 hours.
+          </p>
+
+          <form id="contactInquiryForm" onsubmit="handleContactSubmit(event)" class="mt-6 space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="contactName" class="block text-xs font-semibold text-slate-700 mb-1.5">Your Name *</label>
+                <input type="text" id="contactName" required placeholder="Full Name" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-clinical-500 focus:bg-white transition" />
+              </div>
+              <div>
+                <label for="contactEmail" class="block text-xs font-semibold text-slate-700 mb-1.5">Email Address *</label>
+                <input type="email" id="contactEmail" required placeholder="you@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-clinical-500 focus:bg-white transition" />
+              </div>
+            </div>
+            <div>
+              <label for="contactSubject" class="block text-xs font-semibold text-slate-700 mb-1.5">Inquiry Category *</label>
+              <select id="contactSubject" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-clinical-500 focus:bg-white transition">
+                <option value="General Patient Information">General Patient Information</option>
+                <option value="Insurance & Cashless Billing">Insurance &amp; Cashless Billing</option>
+                <option value="Medical Records & Lab Reports">Medical Records &amp; Lab Reports</option>
+                <option value="International Patient Desk">International Patient Desk</option>
+                <option value="Feedback & Appreciation">Feedback &amp; Appreciation</option>
+              </select>
+            </div>
+            <div>
+              <label for="contactMessage" class="block text-xs font-semibold text-slate-700 mb-1.5">Message *</label>
+              <textarea id="contactMessage" rows="4" required placeholder="How can our patient care coordinators help you?" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-clinical-500 focus:bg-white transition resize-none"></textarea>
+            </div>
+            <button type="submit" class="w-full py-3.5 rounded-xl bg-slate-900 hover:bg-clinical-700 text-white font-bold text-sm transition shadow-md">
+              Send Inquiry Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       10. PROFESSIONAL FOOTER
+  ========================================================== -->
+  <footer class="bg-slate-950 text-slate-300 pt-16 pb-10 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
+        <!-- Brand Bio -->
+        <div class="lg:col-span-4 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-clinical-600 to-cyan-500 flex items-center justify-center text-white">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </div>
+            <div>
+              <span class="block font-display font-extrabold text-xl text-white">Nova<span class="text-cyan-400">Care</span></span>
+              <span class="block text-[10px] uppercase tracking-wider text-slate-400">Multi-Specialty Hospital &amp; Research Center</span>
+            </div>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Delivering compassionate, quaternary-level medical excellence across 8+ specialized centers with JCI &amp; NABH certified patient safety protocols.
+          </p>
+          <div class="flex items-center gap-2 pt-1">
+            <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-semibold text-cyan-300">JCI Gold Seal</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-semibold text-teal-300">NABH Accredited</span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="lg:col-span-2">
+          <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Quick Links</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#about" class="hover:text-cyan-300 transition">About Hospital</a></li>
+            <li><a href="#doctors" class="hover:text-cyan-300 transition">Find a Doctor</a></li>
+            <li><a href="#services" class="hover:text-cyan-300 transition">Medical Services</a></li>
+            <li><a href="#appointment" class="hover:text-cyan-300 transition">Book Appointment</a></li>
+            <li><a href="#health-hub" class="hover:text-cyan-300 transition">Health Hub &amp; BMI</a></li>
+            <li><a href="#emergency" class="text-red-400 hover:text-red-300 font-semibold transition">24/7 Emergency</a></li>
+          </ul>
+        </div>
+
+        <!-- Key Departments -->
+        <div class="lg:col-span-3">
+          <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Core Departments</h4>
+          <ul class="grid grid-cols-2 gap-y-2.5 gap-x-2 text-sm">
+            <li><button type="button" onclick="openDepartmentModal('Cardiology')" class="hover:text-cyan-300 transition text-left">Cardiology</button></li>
+            <li><button type="button" onclick="openDepartmentModal('Neurology')" class="hover:text-cyan-300 transition text-left">Neurology</button></li>
+            <li><button type="button" onclick="openDepartmentModal('Orthopedics')" class="hover:text-cyan-300 transition text-left">Orthopedics</button></li>
+            <li><button type="button" onclick="openDepartmentModal('Pediatrics')" class="hover:text-cyan-300 transition text-left">Pediatrics</button></li>
+            <li><button type="button" onclick="openDepartmentModal('Oncology')" class="hover:text-cyan-300 transition text-left">Oncology</button></li>
+            <li><button type="button" onclick="openDepartmentModal('Emergency & Trauma')" class="hover:text-cyan-300 transition text-left">Emergency</button></li>
+            <li><button type="button" onclick="openDepartmentModal('Dermatology')" class="hover:text-cyan-300 transition text-left">Dermatology</button></li>
+            <li><button type="button" onclick="openDepartmentModal('General Medicine')" class="hover:text-cyan-300 transition text-left">General Med</button></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="lg:col-span-3">
+          <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Wellness Newsletter</h4>
+          <p class="text-sm text-slate-400 mb-4">
+            Receive seasonal preventive care checklists, specialist webinars, and health screening offers.
+          </p>
+          <form id="newsletterForm" onsubmit="handleNewsletterSubmit(event)" class="space-y-2.5">
+            <label for="newsletterEmail" class="sr-only">Email address</label>
+            <input
+              type="email"
+              id="newsletterEmail"
+              required
+              placeholder="Enter your email address"
+              class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            />
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-clinical-600 hover:bg-clinical-500 text-white font-bold text-sm transition">
+              Subscribe to Health Updates
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom Copyright -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <p>&copy; 2026 NovaCare Multi-Specialty Hospital &amp; Research Center. All rights reserved.</p>
+        <div class="flex items-center gap-5">
+          <span>Patient Privacy (HIPAA)</span>
+          <span>Terms of Care</span>
+          <span>Accessibility</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       MODALS & DRAWERS (DEPARTMENT, DOCTOR, ARTICLE, CONFIRMATION, MY BOOKINGS)
+  ========================================================== -->
+
+  <!-- Shared Modal Backdrop Wrapper -->
+  <div id="modalOverlay" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm overflow-y-auto" onclick="handleBackdropClick(event)" role="dialog" aria-modal="true">
+    <div id="modalContentBox" class="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden my-auto max-h-[90vh] flex flex-col">
+      <!-- Dynamic Content Injected Here -->
+    </div>
+  </div>
+
+  <!-- Slide-Over "My Bookings" Drawer -->
+  <div id="bookingsDrawerOverlay" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-sm" onclick="if(event.target===this) closeBookingsDrawer()">
+    <aside class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col h-full">
+      <div class="p-5 sm:p-6 border-b border-slate-200 flex items-center justify-between bg-clinical-900 text-white">
+        <div>
+          <h3 class="font-display font-extrabold text-lg">My Appointments</h3>
+          <p class="text-xs text-teal-200">Saved locally on your browser</p>
+        </div>
+        <button type="button" onclick="closeBookingsDrawer()" class="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition" aria-label="Close bookings drawer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div id="bookingsDrawerBody" class="flex-1 overflow-y-auto p-5 space-y-4 bg-slate-50"></div>
+      <div class="p-4 border-t border-slate-200 bg-white">
+        <a href="#appointment" onclick="closeBookingsDrawer()" class="block w-full py-3 rounded-xl bg-clinical-700 hover:bg-clinical-600 text-white text-center font-bold text-sm transition">
+          + Book New Appointment
+        </a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-[60] flex flex-col gap-2.5 max-w-sm w-[calc(100%-2.5rem)] pointer-events-none"></div>
+
+  <!-- =========================================================
+       APPLICATION JAVASCRIPT (DATA, INTERACTIVITY, STORAGE)
+  ========================================================== -->
+  <script>
+    /* ============================================================
+       1. STRUCTURED HOSPITAL DATA (DEPARTMENTS, DOCTORS, ARTICLES, FAQS, EMERGENCY)
+    ============================================================ */
+    const DEPARTMENTS = [
+      {
+        id: 'Cardiology',
+        name: 'Cardiology',
+        specialists: 18,
+        head: 'Dr. Elena Vance, MD, FACC',
+        desc: 'Comprehensive heart care including interventional cardiology, electrophysiology, and non-invasive diagnostics.',
+        procedures: ['Coronary Angiography', 'Pacemaker Implant', '2D Echo & Stress Test', 'Heart Failure Clinic'],
+        facilities: '2 Hybrid Cath Labs, 24-Bed Coronary Care Unit (CCU), and Dedicated Cardiac Rehab.',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>`
+      },
+      {
+        id: 'Neurology',
+        name: 'Neurology',
+        specialists: 14,
+        head: 'Dr. Rajeshwar Nair, MD, DM',
+        desc: 'Rapid stroke intervention, epilepsy monitoring, neuro-rehabilitation, and minimally invasive brain & spine surgery.',
+        procedures: ['24/7 Stroke Thrombolysis', 'Video EEG Monitoring', 'Spine Microsurgery', 'Parkinson’s Care'],
+        facilities: 'Neuro-Navigation OT, 16-Bed Neuro ICU, and Advanced Nerve Conduction Lab.',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>`
+      },
+      {
+        id: 'Orthopedics',
+        name: 'Orthopedics',
+        specialists: 16,
+        head: 'Dr. Marcus Sterling, MS, FACS',
+        desc: 'Robotic joint replacements, sports arthroscopy, fracture trauma care, and personalized musculoskeletal physiotherapy.',
+        procedures: ['Robotic Knee Replacement', 'ACL Arthroscopy', 'Complex Trauma Fixation', 'Spine Decompression'],
+        facilities: 'Class-100 Laminar Airflow Joint OTs and Hydrotherapy Rehabilitation Gym.',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"/></svg>`
+      },
+      {
+        id: 'Pediatrics',
+        name: 'Pediatrics',
+        specialists: 15,
+        head: 'Dr. Priya Deshmukh, MD (Pediatrics)',
+        desc: 'Child-friendly clinical care from newborn immunization and adolescent wellness to Level-III Neonatal intensive care.',
+        procedures: ['Level-III NICU Support', 'Childhood Vaccinations', 'Pediatric Asthma Clinic', 'Growth Screening'],
+        facilities: 'Family-Centered Pediatric Wards, Play Therapy Lounge, and 20-Bed NICU.',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`
+      },
+      {
+        id: 'Oncology',
+        name: 'Oncology',
+        specialists: 14,
+        head: 'Dr. Hannah Lindqvist, MD, PhD',
+        desc: 'Multidisciplinary tumor boards offering precision immunotherapy, targeted chemotherapy, and surgical oncology.',
+        procedures: ['Precision Immunotherapy', 'PET-CT Cancer Staging', 'Day-Care Chemotherapy', 'Robotic Onco-Surgery'],
+        facilities: 'Linear Accelerator Radiotherapy Suite and Private Chemo Infusion Lounges.',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>`
+      },
+      {
+        id: 'Emergency & Trauma',
+        name: 'Emergency & Trauma',
+        specialists: 22,
+        head: 'Dr. David Okafor, MD, FACEP',
+        desc: 'Zero-delay resuscitation for cardiac arrests, polytrauma, acute poisoning, and critical emergencies around the clock.',
+        procedures: ['Golden-Hour Trauma', 'Cardiac Resuscitation', 'Toxicology & Poison Care', 'Rapid Triage Imaging'],
+        facilities: '18-Bed Resuscitation Bay, Helipad Access, and Dedicated Point-of-Care CT.',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
+        isEmergency: true
+      },
+      {
+        id: 'Dermatology',
+        name: 'Dermatology',
+        specialists: 9,
+        head: 'Dr. Sofia Alvarez, MD, FAAD',
+        desc: 'Evidence-based medical dermatology, allergy patch testing, pediatric skin care, and safe laser therapeutics.',
+        procedures: ['Eczema & Psoriasis Care', 'Dermoscopy & Mole Mapping', 'Allergy Patch Testing', 'Laser Scar Therapy'],
+        facilities: 'Phototherapy Chambers, Digital Dermoscopy Suite, and Cryotherapy Unit.',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>`
+      },
+      {
+        id: 'General Medicine',
+        name: 'General Medicine',
+        specialists: 20,
+        head: 'Dr. Samuel Chen, MD, FACP',
+        desc: 'Holistic internal medicine managing diabetes, hypertension, thyroid disorders, infectious diseases, and preventive checkups.',
+        procedures: ['Diabetes & Metabolic Care', 'Hypertension Management', 'Infectious Disease Clinic', 'Executive Checkups'],
+        facilities: 'Dedicated Chronic Disease Clinics, Lifestyle Coaching, and Same-Day Diagnostics.',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>`
+      }
+    ];
+
+    const DOCTORS = [
+      {
+        id: 'doc-1',
+        name: 'Dr. Elena Vance',
+        department: 'Cardiology',
+        role: 'Chief of Interventional Cardiology',
+        qualifications: 'MD, DM (Cardiology), FACC',
+        experience: 18,
+        rating: 4.9,
+        reviews: 312,
+        hours: 'Mon – Fri: 09:30 AM – 04:30 PM',
+        availableToday: true,
+        fee: '$120',
+        languages: ['English', 'Spanish', 'French'],
+        photo: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=500&q=80',
+        bio: 'Dr. Elena Vance has performed over 4,500 complex coronary angioplasties and structural heart interventions. She leads NovaCare’s Preventive Heart Institute and clinical trials in non-invasive imaging.',
+        education: ['MD — Johns Hopkins University School of Medicine', 'Cardiology Fellowship — Mayo Clinic, Rochester'],
+        awards: ['National Heart Care Excellence Award (2024)', 'Fellow of the American College of Cardiology']
+      },
+      {
+        id: 'doc-2',
+        name: 'Dr. Rajeshwar Nair',
+        department: 'Neurology',
+        role: 'Senior Consultant Neurologist',
+        qualifications: 'MD, DM (Neurology), FRCP',
+        experience: 16,
+        rating: 4.9,
+        reviews: 248,
+        hours: 'Mon – Sat: 10:00 AM – 05:00 PM',
+        availableToday: true,
+        fee: '$110',
+        languages: ['English', 'Hindi', 'Malayalam'],
+        photo: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=500&q=80',
+        bio: 'Specializing in acute stroke thrombolysis, intractable epilepsy, and movement disorders, Dr. Nair established NovaCare’s 24/7 Code-Stroke protocol reducing door-to-needle time under 25 minutes.',
+        education: ['MD Internal Medicine — AIIMS, New Delhi', 'DM Neurology & Stroke Fellowship — University of Toronto'],
+        awards: ['International Stroke Care Pioneer (2023)', '40+ Peer-Reviewed Publications in The Lancet Neurology']
+      },
+      {
+        id: 'doc-3',
+        name: 'Dr. Marcus Sterling',
+        department: 'Orthopedics',
+        role: 'Director of Robotic Joint Replacement',
+        qualifications: 'MS (Ortho), FACS',
+        experience: 21,
+        rating: 4.8,
+        reviews: 289,
+        hours: 'Tue – Sat: 09:00 AM – 03:30 PM',
+        availableToday: true,
+        fee: '$115',
+        languages: ['English', 'German'],
+        photo: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=500&q=80',
+        bio: 'A pioneer in computer-navigated knee and hip arthroplasty, Dr. Sterling also serves as an orthopedic consultant for national athletic teams, focusing on rapid post-surgical mobility.',
+        education: ['MD & Orthopedic Residency — Stanford Medical Center', 'Sports Medicine Fellowship — Hospital for Special Surgery'],
+        awards: ['Top Orthopedic Innovator Award (2025)', 'Fellow of the American College of Surgeons']
+      },
+      {
+        id: 'doc-4',
+        name: 'Dr. Priya Deshmukh',
+        department: 'Pediatrics',
+        role: 'Head of Pediatrics & Neonatology',
+        qualifications: 'MD (Pediatrics), Fellowship NICU',
+        experience: 14,
+        rating: 5.0,
+        reviews: 410,
+        hours: 'Mon – Sat: 09:00 AM – 06:00 PM',
+        availableToday: true,
+        fee: '$90',
+        languages: ['English', 'Hindi', 'Marathi'],
+        photo: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=500&q=80',
+        bio: 'Known for her warm, reassuring bedside manner, Dr. Deshmukh oversees both routine childhood wellness/immunization clinics and high-dependency care for premature newborns in our Level-III NICU.',
+        education: ['MD Pediatrics — Postgraduate Institute of Medical Education', 'Neonatology Fellowship — Boston Children’s Hospital'],
+        awards: ['Child Health Champion Award (2024)', 'Distinguished Mentor in Pediatric Care']
+      },
+      {
+        id: 'doc-5',
+        name: 'Dr. Hannah Lindqvist',
+        department: 'Oncology',
+        role: 'Director of Medical Oncology & Research',
+        qualifications: 'MD, PhD (Oncology), ESMO',
+        experience: 19,
+        rating: 4.9,
+        reviews: 195,
+        hours: 'Mon – Fri: 10:30 AM – 05:30 PM',
+        availableToday: false,
+        fee: '$130',
+        languages: ['English', 'Swedish'],
+        photo: 'https://images.unsplash.com/photo-1651008376811-b90baee60c1f?auto=format&fit=crop&w=500&q=80',
+        bio: 'Dr. Lindqvist chairs NovaCare’s Precision Tumor Board, combining genomic profiling with targeted immunotherapies to maximize remission rates while preserving patient quality of life.',
+        education: ['MD & PhD Oncology — Karolinska Institutet', 'Visiting Research Scholar — MD Anderson Cancer Center'],
+        awards: ['European Oncology Research Medal', 'Lead Investigator in 12 Global Immuno-Oncology Trials']
+      },
+      {
+        id: 'doc-6',
+        name: 'Dr. David Okafor',
+        department: 'Emergency & Trauma',
+        role: 'Chief of Emergency Medicine',
+        qualifications: 'MD, FACEP, ATLS Instructor',
+        experience: 15,
+        rating: 4.9,
+        reviews: 274,
+        hours: '24/7 Rotational Trauma Leadership',
+        availableToday: true,
+        fee: '$95',
+        languages: ['English', 'Yoruba'],
+        photo: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=500&q=80',
+        bio: 'Dr. Okafor directs NovaCare’s Level-1 Trauma & Emergency Resuscitation unit, specializing in disaster preparedness, rapid ultrasound triage, and acute cardiac stabilization.',
+        education: ['MD — Columbia University Vagelos College', 'Emergency Medicine Residency — Bellevue Hospital Center'],
+        awards: ['Life-Saver Clinical Leadership Honor (2025)', 'National ATLS Master Instructor']
+      },
+      {
+        id: 'doc-7',
+        name: 'Dr. Sofia Alvarez',
+        department: 'Dermatology',
+        role: 'Senior Clinical Dermatologist',
+        qualifications: 'MD, FAAD (Dermatology)',
+        experience: 12,
+        rating: 4.8,
+        reviews: 221,
+        hours: 'Mon, Wed, Fri, Sat: 11:00 AM – 06:30 PM',
+        availableToday: true,
+        fee: '$95',
+        languages: ['English', 'Spanish', 'Portuguese'],
+        photo: 'https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?auto=format&fit=crop&w=500&q=80',
+        bio: 'Dr. Alvarez focuses on autoimmune skin conditions, early melanoma detection via digital dermoscopy, pediatric eczema, and gentle dermatologic laser treatments.',
+        education: ['MD — University of California, San Francisco', 'Dermatology Residency — NYU Langone Health'],
+        awards: ['Fellow of the American Academy of Dermatology', 'Best Patient Experience Award (2024)']
+      },
+      {
+        id: 'doc-8',
+        name: 'Dr. Samuel Chen',
+        department: 'General Medicine',
+        role: 'Senior Consultant Internal Medicine',
+        qualifications: 'MD, FACP, Diabetology',
+        experience: 17,
+        rating: 4.9,
+        reviews: 365,
+        hours: 'Mon – Sat: 08:30 AM – 04:00 PM',
+        availableToday: true,
+        fee: '$85',
+        languages: ['English', 'Mandarin'],
+        photo: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=500&q=80',
+        bio: 'Dr. Chen specializes in complex chronic care, diabetes remission programs, resistant hypertension, and executive preventive checkups with a focus on sustainable lifestyle medicine.',
+        education: ['MD — Harvard Medical School', 'Internal Medicine Residency — Massachusetts General Hospital'],
+        awards: ['Fellow of the American College of Physicians', 'Preventive Medicine Leader of the Year']
+      },
+      {
+        id: 'doc-9',
+        name: 'Dr. Arjun Mehta',
+        department: 'Cardiology',
+        role: 'Consultant Cardiac Electrophysiologist',
+        qualifications: 'MD, DM (Cardiology), FHRS',
+        experience: 13,
+        rating: 4.8,
+        reviews: 184,
+        hours: 'Mon – Fri: 01:00 PM – 07:30 PM',
+        availableToday: true,
+        fee: '$115',
+        languages: ['English', 'Hindi', 'Telugu'],
+        photo: 'https://images.unsplash.com/photo-1622902046580-2b47f47f5471?auto=format&fit=crop&w=500&q=80',
+        bio: 'Dr. Mehta specializes in diagnosing and treating complex heart rhythm disorders (arrhythmias), catheter ablation, and modern leadless pacemaker implantations.',
+        education: ['MD & DM Cardiology — CMC Vellore', 'Electrophysiology Fellowship — Cleveland Clinic'],
+        awards: ['Heart Rhythm Society Young Investigator Award']
+      }
+    ];
+
+    const HEALTH_ARTICLES = [
+      {
+        id: 'art-1',
+        category: 'Heart Health',
+        title: '7 Silent Warning Signs Your Heart Needs a Preventive Checkup',
+        author: 'Dr. Elena Vance, MD',
+        readTime: '4 min read',
+        date: 'Nov 12, 2026',
+        image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=800&q=80',
+        excerpt: 'Cardiovascular risk often develops silently years before a crisis. Learn the subtle symptoms and key biomarkers every adult over 30 should track.',
+        body: [
+          'Heart disease rarely announces itself with dramatic symptoms in its earliest stages. Many patients feel completely normal even while blood pressure, arterial inflammation, or LDL cholesterol quietly elevate over years.',
+          'Watch out for subtle warning signs: unexplained fatigue during routine walks, mild shortness of breath when climbing a single flight of stairs, persistent ankle swelling in the evenings, jaw or upper-back tightness during stress, and irregular heart palpitations.',
+          'At NovaCare Cardiology, we recommend an annual baseline panel starting at age 30—including a Lipid Profile, Fasting Glucose/HbA1c, hs-CRP inflammation marker, and a resting 12-Lead ECG. Combining 150 minutes of brisk walking per week with a Mediterranean-style diet reduces coronary risk by up to 42%.'
+        ],
+        keyTakeaway: 'Early preventive screening and managing blood pressure below 120/80 mmHg prevent over 80% of premature cardiac events.'
+      },
+      {
+        id: 'art-2',
+        category: 'Diabetes Care',
+        title: 'Understanding HbA1c & Smart Glycemic Control Without Extreme Diets',
+        author: 'Dr. Samuel Chen, MD',
+        readTime: '5 min read',
+        date: 'Nov 04, 2026',
+        image: 'https://images.unsplash.com/photo-1579684453423-f84349ef60b0?auto=format&fit=crop&w=800&q=80',
+        excerpt: 'Discover how your 3-month average blood sugar works and practical meal-sequencing habits that smooth post-meal glucose spikes.',
+        body: [
+          'While finger-prick glucose tests show a single snapshot in time, HbA1c reflects your average blood glucose over the past 8 to 12 weeks. A value below 5.7% is normal, 5.7%–6.4% signals prediabetes, and 6.5% or higher indicates diabetes.',
+          'One of the simplest evidence-backed strategies to flatten post-meal sugar spikes is meal sequencing: eat fiber-rich non-starchy vegetables first, followed by lean protein and healthy fats, and consume complex carbohydrates last.',
+          'Adding a gentle 10-to-15-minute walk within 30 minutes after meals activates skeletal muscle glucose uptake without requiring extra insulin. Always partner with your internal medicine physician before adjusting prescribed medications.'
+        ],
+        keyTakeaway: 'Meal sequencing (fiber -> protein -> carbs) plus a 12-minute post-meal walk can reduce glucose spikes by up to 30%.'
+      },
+      {
+        id: 'art-3',
+        category: 'Preventive Care',
+        title: 'Age-by-Age Preventive Health Screening Checklist (20s to 60s+)',
+        author: 'Dr. Hannah Lindqvist, MD',
+        readTime: '6 min read',
+        date: 'Oct 28, 2026',
+        image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80',
+        excerpt: 'From thyroid and vitamin panels in your 20s to bone density and cancer screenings after 45, keep your preventive calendar on track.',
+        body: [
+          'Preventive healthcare shifts medicine from reactive treatment to proactive longevity. In your 20s and 30s, focus on baseline blood pressure, CBC, Vitamin D/B12 levels, thyroid screening, and routine dental/vision checks.',
+          'Entering your 40s, add annual HbA1c, comprehensive liver and kidney function, cardiac stress testing if you have family history, and age-appropriate breast or prostate screenings.',
+          'At 50 and beyond, prioritize colorectal screening, DEXA bone mineral density scans, hearing/vision evaluations, and pneumococcal/shingles immunizations. Early detection dramatically expands minimally invasive treatment options.'
+        ],
+        keyTakeaway: 'Schedule one comprehensive wellness checkup every birth month so preventive labs never slip through the cracks.'
+      },
+      {
+        id: 'art-4',
+        category: 'Mental Wellness',
+        title: 'Sleep Architecture, Cortisol & Practical Stress Reset Techniques',
+        author: 'Dr. Rajeshwar Nair, MD',
+        readTime: '4 min read',
+        date: 'Oct 19, 2026',
+        image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80',
+        excerpt: 'Chronic stress disrupts deep REM sleep and elevates blood pressure. Explore neurological habits that calm your autonomic nervous system.',
+        body: [
+          'Quality sleep is the brain’s primary glymphatic cleaning cycle. Sleeping fewer than 6 hours consistently raises evening cortisol, impairs insulin sensitivity, and heightens emotional reactivity.',
+          'Anchor your circadian rhythm by viewing natural outdoor daylight within 30 minutes of waking, keeping your bedroom cool (18–20°C), and dimming bright overhead screens 60 minutes before bed.',
+          'When acute stress hits during the workday, practice the physiological sigh: take two short inhales through the nose (filling the lungs completely), followed by one long, slow exhale through the mouth. Three cycles measurably lower heart rate within 60 seconds.'
+        ],
+        keyTakeaway: 'Consistent wake times and morning sunlight are the two strongest biological anchors for restorative sleep.'
+      },
+      {
+        id: 'art-5',
+        category: 'Pediatric Care',
+        title: 'Seasonal Fever in Children: When to Monitor at Home vs. Visit ER',
+        author: 'Dr. Priya Deshmukh, MD',
+        readTime: '5 min read',
+        date: 'Oct 10, 2026',
+        image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=800&q=80',
+        excerpt: 'A calm parent’s guide to managing mild viral fevers safely, maintaining hydration, and recognizing pediatric red-flag symptoms.',
+        body: [
+          'A fever is your child’s immune system actively fighting an infection—it is a symptom, not an illness by itself. Focus more on how alert, playful, and hydrated your child appears rather than the exact number on the thermometer alone.',
+          'For children older than 6 months with mild viral fevers, dress them in breathable cotton layers, offer frequent small sips of oral rehydration fluids or water, and use pediatrician-approved weight-based dosing for fever reducers.',
+          'Seek immediate emergency care if an infant under 3 months has any temperature above 100.4°F (38°C), or if a child of any age shows rapid breathing, bluish lips, persistent vomiting, rash that doesn’t fade when pressed, or unusual lethargy.'
+        ],
+        keyTakeaway: 'Always dose pediatric fever medicine by your child’s exact weight—not age—and prioritize steady hydration.'
+      },
+      {
+        id: 'art-6',
+        category: 'Heart Health',
+        title: 'Joint Mobility & Low-Impact Cardio for Desk Workers',
+        author: 'Dr. Marcus Sterling, MS',
+        readTime: '4 min read',
+        date: 'Sep 29, 2026',
+        image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80',
+        excerpt: 'Protect your spine, knees, and cardiovascular endurance with micro-mobility breaks designed for students and professionals.',
+        body: [
+          'Prolonged sitting weakens gluteal stabilizers and tightens hip flexors, placing unnecessary compressive load on the lumbar spine and knees. Over years, sedentary habits also lower HDL (“good”) cholesterol.',
+          'Follow the 45-5 rule: every 45 minutes of desk study or work, stand up for 5 minutes to walk, perform gentle thoracic rotations, and stretch your calves and chest.',
+          'Swimming, cycling, brisk incline walking, and resistance band training build protective joint musculature without high-impact cartilage wear.'
+        ],
+        keyTakeaway: 'Short movement snacks every hour outperform a single weekend workout for both spine and heart health.'
+      }
+    ];
+
+    const PATIENT_FAQS = [
+      {
+        q: 'Which health insurance plans and cashless TPAs are accepted at NovaCare?',
+        a: 'NovaCare accepts major national and international insurers including BlueCross BlueShield, Aetna, UnitedHealthcare, Cigna Global, Star Health, and Medicare. Please bring your active insurance card and government photo ID to our Cashless Desk (Ground Floor, Main Atrium) at least 24 hours prior to planned admissions.'
+      },
+      {
+        q: 'What are the hospital visiting hours and attendant guidelines?',
+        a: 'General ward visiting hours are 9:00 AM to 8:00 PM daily (maximum two visitors per patient at a time). For ICU and NICU units, controlled family visits are permitted between 11:00 AM – 12:00 PM and 5:00 PM – 6:00 PM to ensure infection control and patient rest.'
+      },
+      {
+        q: 'How and when can I access my diagnostic lab and radiology reports?',
+        a: 'Routine blood panels are ready within 4 to 6 hours, and MRI/CT radiology reports within 12 to 24 hours. Digital PDFs are automatically emailed to your registered address and can also be collected 24/7 from the Diagnostics Reception.'
+      },
+      {
+        q: 'What is the admission procedure during a 24/7 medical emergency?',
+        a: 'In emergencies, clinical stabilization always comes first—zero paperwork delay. Bring the patient directly to Gate 1 (Emergency & Trauma Bay). Triage nurses and emergency physicians assess patients immediately while family members complete streamlined registration later.'
+      },
+      {
+        q: 'How do I prepare for a Video Teleconsultation appointment?',
+        a: 'After booking a Video Teleconsultation on this website, keep your previous prescriptions, recent lab reports, and current medication list handy. You will receive an encrypted join link via email/SMS 15 minutes before your scheduled slot.'
+      }
+    ];
+
+    const EMERGENCY_CONTACTS = [
+      { title: '24/7 Emergency & Trauma', number: '+1-800-911-2273', sub: 'Level-1 Trauma & Cardiac ER' },
+      { title: 'ALS Ambulance Dispatch', number: '+1-800-911-2628', sub: 'Avg. 8-min Metro Dispatch' },
+      { title: '24/7 Blood Bank & Plasma', number: '+1-800-555-0192', sub: 'All Rare & Negative Groups' },
+      { title: 'Poison Control Helpline', number: '+1-800-222-1222', sub: 'Acute Toxicology Specialists' },
+      { title: 'Maternity & NICU Emergency', number: '+1-800-555-0148', sub: 'High-Risk Labor & Newborn' },
+      { title: 'Critical Care / ICU Desk', number: '+1-800-555-0177', sub: 'Inter-Hospital ICU Transfers' }
+    ];
+
+    const TIME_SLOTS = {
+      morning: ['09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM'],
+      afternoon: ['02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM', '04:00 PM'],
+      evening: ['05:30 PM', '06:00 PM', '06:30 PM', '07:00 PM', '07:30 PM']
+    };
+
+    /* ============================================================
+       2. GLOBAL APPLICATION STATE
+    ============================================================ */
+    let activeDoctorDept = 'All';
+    let activeArticleCategory = 'All';
+    let bmiUnit = 'metric';
+    let currentHeroSlide = 0;
+    let heroIntervalId = null;
+    const STORAGE_KEY = 'novacare_appointments_v1';
+    let bookings = [];
+
+    /* ============================================================
+       3. INITIALIZATION ON DOM READY
+    ============================================================ */
+    document.addEventListener('DOMContentLoaded', () => {
+      loadBookingsFromStorage();
+      renderDepartments();
+      renderDoctorFilterTabs();
+      renderDoctors();
+      initBookingForm();
+      renderArticleFilterTabs();
+      renderArticles();
+      renderFAQs();
+      renderEmergencyContacts();
+      startHeroSlideshow();
+      calculateBMI(); // Initialize default BMI preview
+
+      // Keyboard Accessibility: ESC closes modals and drawers
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeModal();
+          closeBookingsDrawer();
+          closeMobileMenu();
+        }
+      });
+    });
+
+    /* ============================================================
+       4. HERO SLIDESHOW & QUICK SEARCH
+    ============================================================ */
+    function startHeroSlideshow() {
+      heroIntervalId = setInterval(() => {
+        setHeroSlide((currentHeroSlide + 1) % 3);
+      }, 5500);
+    }
+
+    function setHeroSlide(index) {
+      const slides = document.querySelectorAll('.hero-slide');
+      const dots = document.querySelectorAll('.hero-dot');
+      currentHeroSlide = index;
+      slides.forEach((s, i) => s.classList.toggle('active', i === index));
+      dots.forEach((d, i) => {
+        if (i === index) {
+          d.classList.add('w-8', 'bg-cyan-400');
+          d.classList.remove('w-3', 'bg-white/40');
+        } else {
+          d.classList.remove('w-8', 'bg-cyan-400');
+          d.classList.add('w-3', 'bg-white/40');
+        }
+      });
+    }
+
+    function handleHeroSearch(e) {
+      e.preventDefault();
+      const query = document.getElementById('heroSearchInput').value.trim();
+      const dept = document.getElementById('heroDeptSelect').value;
+
+      activeDoctorDept = dept;
+      document.getElementById('doctorSearchInput').value = query;
+      renderDoctorFilterTabs();
+      renderDoctors();
+
+      document.getElementById('doctors').scrollIntoView({ behavior: 'smooth' });
+      showToast(`Filtered specialists${dept !== 'All' ? ' in ' + dept : ''}${query ? ' for "' + query + '"' : ''}.`, 'info');
+    }
+
+    /* ============================================================
+       5. MOBILE NAVIGATION
+    ============================================================ */
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const btn = document.getElementById('mobileMenuBtn');
+      const openIcon = document.getElementById('hamburgerIcon');
+      const closeIcon = document.getElementById('closeMenuIcon');
+      const isHidden = menu.classList.contains('hidden');
+
+      menu.classList.toggle('hidden', !isHidden);
+      openIcon.classList.toggle('hidden', isHidden);
+      closeIcon.classList.toggle('hidden', !isHidden);
+      btn.setAttribute('aria-expanded', String(isHidden));
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      if (!menu.classList.contains('hidden')) toggleMobileMenu();
+    }
+
+    /* ============================================================
+       6. MEDICAL DEPARTMENTS RENDERING & MODAL
+    ============================================================ */
+    function renderDepartments() {
+      const container = document.getElementById('departmentsGrid');
+      container.innerHTML = DEPARTMENTS.map((dept) => {
+        const iconBg = dept.isEmergency
+          ? 'bg-emergency-50 text-emergency-600 group-hover:bg-emergency-600 group-hover:text-white'
+          : 'bg-clinical-50 text-clinical-700 group-hover:bg-clinical-700 group-hover:text-white';
+        const borderAccent = dept.isEmergency ? 'hover:border-red-300' : 'hover:border-clinical-300';
+
+        return `
+          <article class="group bg-white rounded-2xl p-6 border border-slate-200/80 ${borderAccent} shadow-card hover:shadow-soft hover:-translate-y-1 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl ${iconBg} flex items-center justify-center transition">
+                  ${dept.icon}
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">
+                  ${dept.specialists} Specialists
+                </span>
+              </div>
+              <h3 class="font-display font-bold text-lg text-slate-900">${dept.name}</h3>
+              <p class="text-sm text-slate-600 mt-2 leading-relaxed">${dept.desc}</p>
+              <div class="mt-4 flex flex-wrap gap-1.5">
+                ${dept.procedures.slice(0, 2).map(p => `
+                  <span class="text-[11px] font-medium px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-slate-600">${p}</span>
+                `).join('')}
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2">
+              <button
+                type="button"
+                onclick="openDepartmentModal('${dept.id}')"
+                class="flex-1 py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition"
+              >
+                View Details
+              </button>
+              <button
+                type="button"
+                onclick="bookInDepartment('${dept.id}')"
+                class="flex-1 py-2 px-3 rounded-xl ${dept.isEmergency ? 'bg-emergency-600 hover:bg-emergency-700' : 'bg-clinical-700 hover:bg-clinical-600'} text-white text-xs font-bold transition"
+              >
+                Book Now
+              </button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function openDepartmentModal(deptId) {
+      const dept = DEPARTMENTS.find(d => d.id === deptId);
+      if (!dept) return;
+
+      const html = `
+        <div class="p-6 sm:p-7 ${dept.isEmergency ? 'bg-gradient-to-r from-emergency-700 to-rose-700' : 'bg-gradient-to-r from-clinical-800 to-clinical-600'} text-white flex items-start justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center shrink-0">
+              ${dept.icon}
+            </div>
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-white/80">Center of Excellence</span>
+              <h3 class="font-display text-2xl font-extrabold">${dept.name}</h3>
+            </div>
+          </div>
+          <button type="button" onclick="closeModal()" class="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition" aria-label="Close modal">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="p-6 sm:p-7 overflow-y-auto space-y-5">
+          <p class="text-slate-600 leading-relaxed">${dept.desc}</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Department Head</span>
+              <p class="font-display font-bold text-slate-900 mt-1">${dept.head}</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Clinical Strength</span>
+              <p class="font-display font-bold text-slate-900 mt-1">${dept.specialists} Board-Certified Specialists</p>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-display font-bold text-sm text-slate-900 mb-2.5">Key Procedures &amp; Treatments</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              ${dept.procedures.map(p => `
+                <div class="flex items-center gap-2 text-sm text-slate-700 bg-clinical-50/60 px-3 py-2 rounded-xl">
+                  <svg class="w-4 h-4 text-clinical-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span>${p}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+            <h4 class="font-display font-bold text-xs uppercase tracking-wider text-slate-500 mb-1">Infrastructure &amp; Facilities</h4>
+            <p class="text-sm text-slate-700">${dept.facilities}</p>
+          </div>
+        </div>
+
+        <div class="p-5 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-end gap-3">
+          <button type="button" onclick="filterDoctorsByDeptFromModal('${dept.id}')" class="px-4 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 text-sm font-bold transition">
+            View Department Doctors
+          </button>
+          <button type="button" onclick="closeModal(); bookInDepartment('${dept.id}')" class="px-5 py-2.5 rounded-xl bg-clinical-700 hover:bg-clinical-600 text-white text-sm font-bold shadow-sm transition">
+            Book in ${dept.name}
+          </button>
+        </div>
+      `;
+
+      openModal(html);
+    }
+
+    function filterDoctorsByDeptFromModal(deptId) {
+      closeModal();
+      activeDoctorDept = deptId;
+      document.getElementById('doctorSearchInput').value = '';
+      renderDoctorFilterTabs();
+      renderDoctors();
+      document.getElementById('doctors').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* ============================================================
+       7. DOCTOR DIRECTORY, SEARCH, FILTER & PROFILE MODAL
+    ============================================================ */
+    function renderDoctorFilterTabs() {
+      const container = document.getElementById('doctorFilterTabs');
+      const tabs = ['All', ...DEPARTMENTS.map(d => d.id)];
+      container.innerHTML = tabs.map(tab => {
+        const active = activeDoctorDept === tab;
+        return `
+          <button
+            type="button"
+            role="tab"
+            aria-selected="${active}"
+            onclick="setDoctorDeptFilter('${tab}')"
+            class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition ${
+              active
+                ? 'bg-clinical-700 text-white shadow-sm'
+                : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
+            }"
+          >
+            ${tab}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function setDoctorDeptFilter(dept) {
+      activeDoctorDept = dept;
+      renderDoctorFilterTabs();
+      renderDoctors();
+    }
+
+    function resetDoctorFilters() {
+      activeDoctorDept = 'All';
+      document.getElementById('doctorSearchInput').value = '';
+      renderDoctorFilterTabs();
+      renderDoctors();
+    }
+
+    function renderDoctors() {
+      const searchInput = document.getElementById('doctorSearchInput');
+      const query = (searchInput.value || '').trim().toLowerCase();
+      const clearBtn = document.getElementById('clearDoctorSearchBtn');
+      const resetLink = document.getElementById('resetFilterLink');
+
+      clearBtn.classList.toggle('hidden', query.length === 0);
+      resetLink.classList.toggle('hidden', query.length === 0 && activeDoctorDept === 'All');
+
+      const filtered = DOCTORS.filter(doc => {
+        const matchesDept = activeDoctorDept === 'All' || doc.department === activeDoctorDept;
+        const searchable = `${doc.name} ${doc.department} ${doc.role} ${doc.qualifications} ${doc.bio}`.toLowerCase();
+        const matchesQuery = !query || searchable.includes(query);
+        return matchesDept && matchesQuery;
+      });
+
+      const grid = document.getElementById('doctorsGrid');
+      const empty = document.getElementById('doctorsEmptyState');
+      const label = document.getElementById('doctorCountLabel');
+
+      label.textContent = `Showing ${filtered.length} of ${DOCTORS.length} specialist doctors${activeDoctorDept !== 'All' ? ' in ' + activeDoctorDept : ''}`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        empty.classList.remove('hidden');
+        return;
+      }
+
+      empty.classList.add('hidden');
+      grid.innerHTML = filtered.map(doc => `
+        <article class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-card hover:shadow-soft hover:-translate-y-1 transition flex flex-col justify-between">
+          <div>
+            <!-- Doctor Portrait -->
+            <div class="relative h-56 bg-gradient-to-br from-clinical-100 to-slate-200 overflow-hidden">
+              <img
+                src="${doc.photo}"
+                alt="${doc.name} — ${doc.department}"
+                loading="lazy"
+                onerror="this.onerror=null;this.src='https://placehold.co/400x400/0f766e/ffffff?text=${encodeURIComponent(doc.name)}';"
+                class="w-full h-full object-cover object-top"
+              />
+              <!-- Availability Badge -->
+              <div class="absolute top-3 left-3">
+                ${doc.availableToday
+                  ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50/95 backdrop-blur-sm text-emerald-800 text-[11px] font-bold shadow-sm border border-emerald-200">
+                       <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Available Today
+                     </span>`
+                  : `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50/95 backdrop-blur-sm text-amber-800 text-[11px] font-bold shadow-sm border border-amber-200">
+                       <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>Next Slot Tomorrow
+                     </span>`
+                }
+              </div>
+              <!-- Rating Badge -->
+              <div class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-sm text-white text-xs font-bold flex items-center gap-1">
+                <svg class="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <span>${doc.rating.toFixed(1)}</span>
+              </div>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-5">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-clinical-700">${doc.department}</span>
+              <h3 class="font-display font-extrabold text-lg text-slate-900 mt-0.5">${doc.name}</h3>
+              <p class="text-xs font-semibold text-slate-500 mt-0.5">${doc.qualifications}</p>
+
+              <div class="mt-3.5 space-y-1.5 text-xs text-slate-600">
+                <div class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-clinical-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                  <span><strong>${doc.experience}+ Years</strong> Experience</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-clinical-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <span class="truncate" title="${doc.hours}">${doc.hours}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="px-5 pb-5 pt-2 flex items-center gap-2">
+            <button
+              type="button"
+              onclick="openDoctorProfileModal('${doc.id}')"
+              class="flex-1 py-2.5 px-3 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold transition"
+            >
+              View Profile
+            </button>
+            <button
+              type="button"
+              onclick="bookWithDoctor('${doc.id}')"
+              class="flex-1 py-2.5 px-3 rounded-xl bg-clinical-700 hover:bg-clinical-600 text-white text-xs font-bold shadow-sm transition"
+            >
+              Book Visit
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function openDoctorProfileModal(docId) {
+      const doc = DOCTORS.find(d => d.id === docId);
+      if (!doc) return;
+
+      const html = `
+        <div class="p-6 bg-gradient-to-r from-clinical-900 to-clinical-700 text-white flex items-start justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <img
+              src="${doc.photo}"
+              alt="${doc.name}"
+              onerror="this.onerror=null;this.src='https://placehold.co/150x150/0f766e/ffffff?text=MD';"
+              class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover object-top border-2 border-white/40 shadow-md shrink-0"
+            />
+            <div>
+              <span class="inline-block px-2.5 py-0.5 rounded-full bg-white/15 text-cyan-200 text-[11px] font-bold uppercase tracking-wider">${doc.department}</span>
+              <h3 class="font-display text-xl sm:text-2xl font-extrabold mt-1">${doc.name}</h3>
+              <p class="text-xs sm:text-sm text-teal-100">${doc.role} &bull; ${doc.qualifications}</p>
+            </div>
+          </div>
+          <button type="button" onclick="closeModal()" class="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition" aria-label="Close modal">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="p-6 overflow-y-auto space-y-5">
+          <!-- Quick Stats Row -->
+          <div class="grid grid-cols-3 gap-3 text-center">
+            <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+              <div class="font-display font-extrabold text-lg text-clinical-800">${doc.experience}+ Yrs</div>
+              <div class="text-[11px] text-slate-500">Experience</div>
+            </div>
+            <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+              <div class="font-display font-extrabold text-lg text-clinical-800">${doc.rating} / 5</div>
+              <div class="text-[11px] text-slate-500">${doc.reviews} Reviews</div>
+            </div>
+            <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+              <div class="font-display font-extrabold text-lg text-clinical-800">${doc.fee}</div>
+              <div class="text-[11px] text-slate-500">Consult Fee</div>
+            </div>
+          </div>
+
+          <!-- Biography -->
+          <div>
+            <h4 class="font-display font-bold text-sm text-slate-900 mb-1.5">Clinical Biography</h4>
+            <p class="text-sm text-slate-600 leading-relaxed">${doc.bio}</p>
+          </div>
+
+          <!-- Education & Awards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+              <h4 class="font-display font-bold text-xs uppercase tracking-wider text-clinical-700 mb-2">Education &amp; Training</h4>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                ${doc.education.map(ed => `<li class="flex items-start gap-2"><span class="text-clinical-600 font-bold">&bull;</span><span>${ed}</span></li>`).join('')}
+              </ul>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+              <h4 class="font-display font-bold text-xs uppercase tracking-wider text-clinical-700 mb-2">Awards &amp; Honors</h4>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                ${doc.awards.map(aw => `<li class="flex items-start gap-2"><span class="text-amber-500 font-bold">&#9733;</span><span>${aw}</span></li>`).join('')}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Schedule & Languages -->
+          <div class="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl bg-clinical-50 border border-clinical-100 text-xs">
+            <div>
+              <span class="font-bold text-clinical-900 block">OPD Schedule:</span>
+              <span class="text-clinical-800">${doc.hours}</span>
+            </div>
+            <div>
+              <span class="font-bold text-clinical-900 block">Languages Spoken:</span>
+              <span class="text-clinical-800">${doc.languages.join(', ')}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 bg-slate-50 border-t border-slate-200 flex items-center justify-end gap-3">
+          <button type="button" onclick="closeModal()" class="px-4 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-700 text-sm font-bold hover:bg-slate-100 transition">
+            Close
+          </button>
+          <button type="button" onclick="closeModal(); bookWithDoctor('${doc.id}')" class="px-6 py-2.5 rounded-xl bg-clinical-700 hover:bg-clinical-600 text-white text-sm font-bold shadow-md transition">
+            Book Appointment with ${doc.name.split(' ')[0]} ${doc.name.split(' ')[1]}
+          </button>
+        </div>
+      `;
+
+      openModal(html);
+    }
+
+    /* ============================================================
+       8. INTERACTIVE APPOINTMENT BOOKING SYSTEM & LOCALSTORAGE
+    ============================================================ */
+    function initBookingForm() {
+      // Populate department select
+      const deptSelect = document.getElementById('bookingDepartment');
+      deptSelect.innerHTML = `<option value="">Select Medical Department</option>` +
+        DEPARTMENTS.map(d => `<option value="${d.id}">${d.name}</option>`).join('');
+
+      // Set min date to today, default value to tomorrow
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(today.getDate() + 1);
+      const formatDate = (dt) => dt.toISOString().split('T')[0];
+
+      const dateInput = document.getElementById('bookingDate');
+      dateInput.min = formatDate(today);
+      dateInput.value = formatDate(tomorrow);
+
+      // Render interactive time slot pills
+      renderTimeSlots();
+    }
+
+    function renderTimeSlots() {
+      const renderGroup = (elId, slots) => {
+        document.getElementById(elId).innerHTML = slots.map(slot => `
+          <button
+            type="button"
+            data-slot="${slot}"
+            onclick="selectTimeSlot('${slot}')"
+            class="time-slot-pill px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 bg-white text-slate-700 hover:border-clinical-500 hover:text-clinical-700 transition"
+          >
+            ${slot}
+          </button>
+        `).join('');
+      };
+      renderGroup('morningSlots', TIME_SLOTS.morning);
+      renderGroup('afternoonSlots', TIME_SLOTS.afternoon);
+      renderGroup('eveningSlots', TIME_SLOTS.evening);
+    }
+
+    function selectTimeSlot(slot) {
+      document.getElementById('bookingTimeSlot').value = slot;
+      document.getElementById('selectedSlotBadge').textContent = `Selected: ${slot}`;
+      document.querySelectorAll('.time-slot-pill').forEach(btn => {
+        const isSelected = btn.getAttribute('data-slot') === slot;
+        btn.classList.toggle('bg-clinical-700', isSelected);
+        btn.classList.toggle('text-white', isSelected);
+        btn.classList.toggle('border-clinical-700', isSelected);
+        btn.classList.toggle('shadow-sm', isSelected);
+        btn.classList.toggle('bg-white', !isSelected);
+        btn.classList.toggle('text-slate-700', !isSelected);
+      });
+    }
+
+    function setConsultMode(mode) {
+      document.getElementById('bookingMode').value = mode;
+      const inPersonBtn = document.getElementById('modeInPersonBtn');
+      const videoBtn = document.getElementById('modeVideoBtn');
+
+      if (mode === 'In-Person Visit') {
+        inPersonBtn.className = 'py-2.5 px-4 rounded-xl text-sm font-bold transition flex items-center justify-center gap-2 bg-white text-clinical-800 shadow-sm';
+        videoBtn.className = 'py-2.5 px-4 rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900';
+      } else {
+        videoBtn.className = 'py-2.5 px-4 rounded-xl text-sm font-bold transition flex items-center justify-center gap-2 bg-white text-clinical-800 shadow-sm';
+        inPersonBtn.className = 'py-2.5 px-4 rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900';
+      }
+    }
+
+    function updateBookingDoctorsList(preselectDoctorId = '') {
+      const dept = document.getElementById('bookingDepartment').value;
+      const docSelect = document.getElementById('bookingDoctor');
+
+      if (!dept) {
+        docSelect.innerHTML = `<option value="">Select Department First</option>`;
+        return;
+      }
+
+      const matchingDocs = DOCTORS.filter(d => d.department === dept);
+      docSelect.innerHTML = `<option value="">Choose a Specialist (${matchingDocs.length} available)</option>` +
+        matchingDocs.map(d => `<option value="${d.id}">${d.name} — ${d.qualifications}</option>`).join('');
+
+      if (preselectDoctorId) {
+        docSelect.value = preselectDoctorId;
+      } else if (matchingDocs.length === 1) {
+        docSelect.value = matchingDocs[0].id;
+      }
+    }
+
+    // Convenience Pre-fill Helpers from Departments, Doctors & Services
+    function bookInDepartment(deptId) {
+      document.getElementById('bookingDepartment').value = deptId;
+      updateBookingDoctorsList();
+      document.getElementById('appointment').scrollIntoView({ behavior: 'smooth' });
+      showToast(`Selected ${deptId} department in booking form.`, 'info');
+    }
+
+    function bookWithDoctor(docId) {
+      const doc = DOCTORS.find(d => d.id === docId);
+      if (!doc) return;
+      document.getElementById('bookingDepartment').value = doc.department;
+      updateBookingDoctorsList(doc.id);
+      document.getElementById('appointment').scrollIntoView({ behavior: 'smooth' });
+      showToast(`Pre-selected ${doc.name} (${doc.department}).`, 'info');
+    }
+
+    function prebookPackage(deptId, reasonText) {
+      setConsultMode('In-Person Visit');
+      document.getElementById('bookingDepartment').value = deptId;
+      updateBookingDoctorsList();
+      document.getElementById('patientSymptoms').value = reasonText;
+      document.getElementById('appointment').scrollIntoView({ behavior: 'smooth' });
+      showToast(`Selected "${reasonText}" — complete patient details to confirm.`, 'info');
+    }
+
+    function prebookTelemedicine() {
+      setConsultMode('Video Teleconsultation');
+      document.getElementById('appointment').scrollIntoView({ behavior: 'smooth' });
+      showToast('Switched to Video Teleconsultation mode.', 'info');
+    }
+
+    // Form Validation & Submission
+    function handleAppointmentSubmit(e) {
+      e.preventDefault();
+      const errorBox = document.getElementById('bookingFormError');
+      const errorText = document.getElementById('bookingFormErrorText');
+
+      const mode = document.getElementById('bookingMode').value;
+      const department = document.getElementById('bookingDepartment').value;
+      const doctorId = document.getElementById('bookingDoctor').value;
+      const date = document.getElementById('bookingDate').value;
+      const timeSlot = document.getElementById('bookingTimeSlot').value;
+      const name = document.getElementById('patientName').value.trim();
+      const phone = document.getElementById('patientPhone').value.trim();
+      const email = document.getElementById('patientEmail').value.trim();
+      const age = document.getElementById('patientAge').value.trim();
+      const symptoms = document.getElementById('patientSymptoms').value.trim() || 'Routine clinical consultation';
+
+      const showErr = (msg) => {
+        errorText.textContent = msg;
+        errorBox.classList.remove('hidden');
+        errorBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      };
+
+      if (!department) return showErr('Please select a medical department.');
+      if (!doctorId) return showErr('Please select a specialist doctor.');
+      if (!date) return showErr('Please pick a preferred appointment date.');
+      if (!timeSlot) return showErr('Please select an available Morning, Afternoon, or Evening time slot.');
+      if (name.length < 2) return showErr('Please enter the patient’s full name.');
+      if (phone.length < 7) return showErr('Please enter a valid phone number.');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showErr('Please enter a valid email address.');
+      if (age === '' || Number(age) < 0 || Number(age) > 120) return showErr('Please enter a valid patient age.');
+
+      errorBox.classList.add('hidden');
+
+      const docObj = DOCTORS.find(d => d.id === doctorId);
+      const randomDigits = Math.floor(1000 + Math.random() * 9000);
+      const refId = `NC-2026-${randomDigits}`;
+
+      const newBooking = {
+        refId,
+        mode,
+        department,
+        doctorName: docObj ? docObj.name : 'Assigned Specialist',
+        doctorQual: docObj ? docObj.qualifications : '',
+        date,
+        timeSlot,
+        patientName: name,
+        patientPhone: phone,
+        patientEmail: email,
+        patientAge: age,
+        symptoms,
+        createdAt: new Date().toLocaleString()
+      };
+
+      bookings.unshift(newBooking);
+      saveBookingsToStorage();
+      updateBookingsBadge();
+
+      // Reset inputs gently while keeping date convenient
+      document.getElementById('patientName').value = '';
+      document.getElementById('patientPhone').value = '';
+      document.getElementById('patientEmail').value = '';
+      document.getElementById('patientAge').value = '';
+      document.getElementById('patientSymptoms').value = '';
+      document.getElementById('bookingTimeSlot').value = '';
+      document.getElementById('selectedSlotBadge').textContent = 'No slot selected';
+      document.querySelectorAll('.time-slot-pill').forEach(btn => {
+        btn.classList.remove('bg-clinical-700', 'text-white', 'border-clinical-700', 'shadow-sm');
+        btn.classList.add('bg-white', 'text-slate-700');
+      });
+
+      openBookingConfirmationModal(newBooking);
+      showToast(`Appointment confirmed! Ref: ${refId}`, 'success');
+    }
+
+    function openBookingConfirmationModal(b) {
+      const html = `
+        <div id="printableReceiptArea" class="bg-white">
+          <div class="p-6 sm:p-7 bg-gradient-to-r from-clinical-800 to-emerald-700 text-white text-center relative">
+            <button type="button" onclick="closeModal()" class="print:hidden absolute top-4 right-4 p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition" aria-label="Close confirmation">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div class="w-14 h-14 mx-auto rounded-full bg-white/20 flex items-center justify-center mb-3">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h3 class="font-display text-2xl font-extrabold">Appointment Confirmed!</h3>
+            <p class="text-sm text-teal-100 mt-1">NovaCare Multi-Specialty Hospital &amp; Research Center</p>
+            <div class="mt-3 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-sm font-mono font-bold">
+              <span>Ref ID: ${b.refId}</span>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-7 space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+              <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Patient Details</span>
+                <p class="font-bold text-slate-900 mt-0.5">${escapeHtml(b.patientName)} (${escapeHtml(b.patientAge)} yrs)</p>
+                <p class="text-xs text-slate-600">${escapeHtml(b.patientPhone)}</p>
+                <p class="text-xs text-slate-600">${escapeHtml(b.patientEmail)}</p>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Clinical Schedule</span>
+                <p class="font-bold text-clinical-800 mt-0.5">${escapeHtml(b.doctorName)}</p>
+                <p class="text-xs text-slate-600">${escapeHtml(b.department)} &bull; ${escapeHtml(b.mode)}</p>
+                <p class="text-xs font-bold text-slate-800 mt-1">${escapeHtml(b.date)} at ${escapeHtml(b.timeSlot)}</p>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-clinical-50/70 border border-clinical-100 text-xs text-slate-700">
+              <strong class="text-clinical-900">Reason / Notes:</strong> ${escapeHtml(b.symptoms)}
+            </div>
+
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Please arrive 15 minutes early for in-person OPD registration (or join the video link 5 minutes before your slot). Present Reference ID <strong>${b.refId}</strong> at the counter.
+            </p>
+          </div>
+        </div>
+
+        <div class="p-5 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+          <button type="button" onclick="copyTextToClipboard('${b.refId}', 'Booking Ref ID ${b.refId} copied!')" class="px-4 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 text-xs sm:text-sm font-bold transition">
+            Copy Ref ID
+          </button>
+          <div class="flex items-center gap-2.5">
+            <button type="button" onclick="downloadBookingSummary('${b.refId}')" class="px-4 py-2.5 rounded-xl border border-clinical-600 text-clinical-700 hover:bg-clinical-50 text-xs sm:text-sm font-bold transition">
+              Download Slip
+            </button>
+            <button type="button" onclick="window.print()" class="px-5 py-2.5 rounded-xl bg-clinical-700 hover:bg-clinical-600 text-white text-xs sm:text-sm font-bold shadow-sm transition">
+              Print Summary
+            </button>
+          </div>
+        </div>
+      `;
+      openModal(html);
+    }
+
+    function downloadBookingSummary(refId) {
+      const b = bookings.find(item => item.refId === refId);
+      if (!b) return;
+      const content = [
+        '====================================================',
+        '  NOVACARE MULTI-SPECIALTY HOSPITAL & RESEARCH CENTER',
+        '            APPOINTMENT CONFIRMATION SLIP',
+        '====================================================',
+        `Booking Reference : ${b.refId}`,
+        `Consultation Mode : ${b.mode}`,
+        `Department        : ${b.department}`,
+        `Doctor            : ${b.doctorName} (${b.doctorQual})`,
+        `Date & Time       : ${b.date} at ${b.timeSlot}`,
+        '----------------------------------------------------',
+        `Patient Name      : ${b.patientName} (Age: ${b.patientAge})`,
+        `Phone             : ${b.patientPhone}`,
+        `Email             : ${b.patientEmail}`,
+        `Symptoms / Notes  : ${b.symptoms}`,
+        '----------------------------------------------------',
+        'Location: 450 Health Sciences Blvd, Medical District',
+        '24/7 Emergency Helpline: +1-800-911-CARE',
+        '===================================================='
+      ].join('\n');
+
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `NovaCare_Appointment_${b.refId}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Appointment summary downloaded.', 'success');
+    }
+
+    /* ============================================================
+       9. LOCALSTORAGE PERSISTENCE & "MY BOOKINGS" DRAWER
+    ============================================================ */
+    function loadBookingsFromStorage() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        bookings = raw ? JSON.parse(raw) : [];
+        if (!Array.isArray(bookings)) bookings = [];
+      } catch (err) {
+        bookings = [];
+      }
+      updateBookingsBadge();
+    }
+
+    function saveBookingsToStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings));
+      } catch (err) {
+        // Storage full or restricted in sandboxed preview
+      }
+    }
+
+    function updateBookingsBadge() {
+      const badge = document.getElementById('bookingsBadge');
+      badge.textContent = String(bookings.length);
+    }
+
+    function openBookingsDrawer() {
+      renderBookingsDrawer();
+      document.getElementById('bookingsDrawerOverlay').classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeBookingsDrawer() {
+      document.getElementById('bookingsDrawerOverlay').classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function renderBookingsDrawer(confirmCancelRef = null) {
+      const body = document.getElementById('bookingsDrawerBody');
+
+      if (bookings.length === 0) {
+        body.innerHTML = `
+          <div class="text-center py-14 px-4">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-clinical-100 text-clinical-700 flex items-center justify-center mb-4">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <h4 class="font-display font-bold text-slate-900">No Upcoming Bookings</h4>
+            <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
+              Your scheduled OPD visits and telemedicine appointments will appear here once booked.
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      body.innerHTML = bookings.map(b => `
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-center justify-between gap-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-clinical-50 text-clinical-800 font-mono text-[11px] font-bold border border-clinical-200">
+              ${escapeHtml(b.refId)}
+            </span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded-md ${b.mode.includes('Video') ? 'bg-cyan-50 text-cyan-800' : 'bg-slate-100 text-slate-700'}">
+              ${escapeHtml(b.mode)}
+            </span>
+          </div>
+
+          <div>
+            <h4 class="font-display font-bold text-slate-900 text-sm">${escapeHtml(b.doctorName)}</h4>
+            <p class="text-xs text-clinical-700 font-semibold">${escapeHtml(b.department)}</p>
+          </div>
+
+          <div class="text-xs text-slate-600 space-y-1 bg-slate-50 p-3 rounded-xl">
+            <div><strong>Patient:</strong> ${escapeHtml(b.patientName)} (${escapeHtml(b.patientAge)} yrs)</div>
+            <div><strong>Schedule:</strong> ${escapeHtml(b.date)} &bull; ${escapeHtml(b.timeSlot)}</div>
+            <div class="truncate"><strong>Notes:</strong> ${escapeHtml(b.symptoms)}</div>
+          </div>
+
+          ${confirmCancelRef === b.refId ? `
+            <div class="p-3 rounded-xl bg-emergency-50 border border-red-200 text-xs">
+              <p class="font-bold text-emergency-700 mb-2">Cancel this appointment?</p>
+              <div class="flex items-center gap-2">
+                <button type="button" onclick="confirmCancelBooking('${b.refId}')" class="flex-1 py-1.5 rounded-lg bg-emergency-600 text-white font-bold hover:bg-emergency-700 transition">Yes, Cancel</button>
+                <button type="button" onclick="renderBookingsDrawer(null)" class="flex-1 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 font-bold hover:bg-slate-50 transition">Keep</button>
+              </div>
+            </div>
+          ` : `
+            <div class="flex items-center justify-between gap-2 pt-1">
+              <button type="button" onclick="downloadBookingSummary('${b.refId}')" class="text-xs font-bold text-clinical-700 hover:underline">
+                Download Slip
+              </button>
+              <button type="button" onclick="renderBookingsDrawer('${b.refId}')" class="text-xs font-bold text-emergency-600 hover:text-emergency-700">
+                Cancel Booking
+              </button>
+            </div>
+          `}
+        </div>
+      `).join('');
+    }
+
+    function confirmCancelBooking(refId) {
+      bookings = bookings.filter(b => b.refId !== refId);
+      saveBookingsToStorage();
+      updateBookingsBadge();
+      renderBookingsDrawer();
+      showToast(`Appointment ${refId} has been cancelled.`, 'warning');
+    }
+
+    /* ============================================================
+       10. HEALTH INFORMATION HUB (ARTICLES, BMI CALCULATOR, FAQS)
+    ============================================================ */
+    function renderArticleFilterTabs() {
+      const categories = ['All', 'Heart Health', 'Diabetes Care', 'Preventive Care', 'Mental Wellness', 'Pediatric Care'];
+      const container = document.getElementById('articleCategoryTabs');
+      container.innerHTML = categories.map(cat => {
+        const active = activeArticleCategory === cat;
+        return `
+          <button
+            type="button"
+            onclick="setArticleCategory('${cat}')"
+            class="px-3.5 py-1.5 rounded-xl text-xs font-semibold transition ${
+              active
+                ? 'bg-clinical-700 text-white shadow-sm'
+                : 'bg-white border border-slate-200 text-slate-600 hover:bg-clinical-50 hover:text-clinical-700'
+            }"
+          >
+            ${cat}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function setArticleCategory(cat) {
+      activeArticleCategory = cat;
+      renderArticleFilterTabs();
+      renderArticles();
+    }
+
+    function renderArticles() {
+      const list = activeArticleCategory === 'All'
+        ? HEALTH_ARTICLES
+        : HEALTH_ARTICLES.filter(a => a.category === activeArticleCategory);
+
+      document.getElementById('articlesGrid').innerHTML = list.map(art => `
+        <article class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-card hover:shadow-soft hover:-translate-y-1 transition flex flex-col justify-between">
+          <div>
+            <div class="relative h-44 bg-slate-200 overflow-hidden">
+              <img
+                src="${art.image}"
+                alt="${art.title}"
+                loading="lazy"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x360/0f766e/ffffff?text=${encodeURIComponent(art.category)}';"
+                class="w-full h-full object-cover"
+              />
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-clinical-800 text-[11px] font-bold shadow-sm">
+                ${art.category}
+              </span>
+            </div>
+            <div class="p-5">
+              <div class="flex items-center gap-2 text-[11px] text-slate-500 font-medium mb-2">
+                <span>${art.date}</span>
+                <span>&bull;</span>
+                <span>${art.readTime}</span>
+              </div>
+              <h3 class="font-display font-bold text-lg text-slate-900 leading-snug">
+                ${art.title}
+              </h3>
+              <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                ${art.excerpt}
+              </p>
+            </div>
+          </div>
+          <div class="px-5 pb-5 pt-2 flex items-center justify-between border-t border-slate-100 mt-2">
+            <span class="text-xs font-semibold text-slate-500">By ${art.author}</span>
+            <button
+              type="button"
+              onclick="openArticleModal('${art.id}')"
+              class="text-xs font-bold text-clinical-700 hover:text-clinical-600 inline-flex items-center gap-1"
+            >
+              Read Full Article &rarr;
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function openArticleModal(artId) {
+      const art = HEALTH_ARTICLES.find(a => a.id === artId);
+      if (!art) return;
+
+      const html = `
+        <div class="relative h-48 sm:h-56 bg-clinical-900 shrink-0">
+          <img
+            src="${art.image}"
+            alt="${art.title}"
+            onerror="this.onerror=null;this.src='https://placehold.co/800x400/0f766e/ffffff?text=NovaCare+Health+Guide';"
+            class="w-full h-full object-cover opacity-80"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/40 to-transparent"></div>
+          <button type="button" onclick="closeModal()" class="absolute top-4 right-4 p-2 rounded-xl bg-black/40 hover:bg-black/60 text-white transition" aria-label="Close article">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+          <div class="absolute bottom-4 left-6 right-6 text-white">
+            <span class="px-2.5 py-0.5 rounded-full bg-cyan-400 text-slate-950 text-[11px] font-extrabold uppercase">${art.category}</span>
+            <h3 class="font-display text-xl sm:text-2xl font-extrabold mt-2 leading-tight">${art.title}</h3>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-7 overflow-y-auto space-y-4">
+          <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500 pb-3 border-b border-slate-200">
+            <span class="font-bold text-slate-700">Medically Reviewed by ${art.author}</span>
+            <span>&bull;</span>
+            <span>${art.date}</span>
+            <span>&bull;</span>
+            <span>${art.readTime}</span>
+          </div>
+
+          ${art.body.map(p => `<p class="text-sm sm:text-base text-slate-700 leading-relaxed">${p}</p>`).join('')}
+
+          <div class="p-4 rounded-2xl bg-clinical-50 border border-clinical-200">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-clinical-800 block mb-1">Key Clinical Takeaway</span>
+            <p class="text-sm font-medium text-clinical-900">${art.keyTakeaway}</p>
+          </div>
+        </div>
+
+        <div class="p-4 sm:p-5 bg-slate-50 border-t border-slate-200 flex items-center justify-between gap-3">
+          <span class="text-xs text-slate-500">Educational content — consult a doctor for diagnosis.</span>
+          <button type="button" onclick="closeModal(); document.getElementById('appointment').scrollIntoView({behavior:'smooth'})" class="px-4 py-2 rounded-xl bg-clinical-700 hover:bg-clinical-600 text-white text-xs sm:text-sm font-bold shrink-0 transition">
+            Consult a Specialist
+          </button>
+        </div>
+      `;
+      openModal(html);
+    }
+
+    // Interactive BMI Calculator
+    function setBmiUnit(unit) {
+      bmiUnit = unit;
+      const metricBtn = document.getElementById('bmiMetricBtn');
+      const impBtn = document.getElementById('bmiImperialBtn');
+      document.getElementById('bmiMetricInputs').classList.toggle('hidden', unit !== 'metric');
+      document.getElementById('bmiImperialInputs').classList.toggle('hidden', unit !== 'imperial');
+
+      if (unit === 'metric') {
+        metricBtn.className = 'px-3 py-1.5 rounded-lg bg-white text-clinical-700 shadow-sm transition';
+        impBtn.className = 'px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition';
+      } else {
+        impBtn.className = 'px-3 py-1.5 rounded-lg bg-white text-clinical-700 shadow-sm transition';
+        metricBtn.className = 'px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition';
+      }
+      calculateBMI();
+    }
+
+    function calculateBMI(e) {
+      if (e) e.preventDefault();
+      let bmi = 0;
+
+      if (bmiUnit === 'metric') {
+        const hCm = parseFloat(document.getElementById('bmiHeightCm').value);
+        const wKg = parseFloat(document.getElementById('bmiWeightKg').value);
+        if (!hCm || !wKg || hCm <= 0 || wKg <= 0) {
+          showToast('Please enter valid height and weight values.', 'warning');
+          return;
+        }
+        const hM = hCm / 100;
+        bmi = wKg / (hM * hM);
+      } else {
+        const ft = parseFloat(document.getElementById('bmiHeightFt').value) || 0;
+        const inches = parseFloat(document.getElementById('bmiHeightIn').value) || 0;
+        const lbs = parseFloat(document.getElementById('bmiWeightLbs').value);
+        const totalIn = ft * 12 + inches;
+        if (totalIn <= 0 || !lbs || lbs <= 0) {
+          showToast('Please enter valid height and weight values.', 'warning');
+          return;
+        }
+        bmi = (lbs / (totalIn * totalIn)) * 703;
+      }
+
+      const rounded = Math.round(bmi * 10) / 10;
+      const scoreEl = document.getElementById('bmiScoreValue');
+      const badgeEl = document.getElementById('bmiCategoryBadge');
+      const tipEl = document.getElementById('bmiTipText');
+      const markerEl = document.getElementById('bmiMarker');
+
+      scoreEl.textContent = rounded.toFixed(1);
+
+      let category = '';
+      let badgeClasses = '';
+      let tip = '';
+
+      if (rounded < 18.5) {
+        category = 'Underweight';
+        badgeClasses = 'px-3 py-1 rounded-full text-xs font-bold bg-sky-100 text-sky-800';
+        tip = 'Your BMI is below the standard range. Consider nutrient-dense meals, strength training, and a General Medicine checkup to rule out nutritional deficiencies.';
+      } else if (rounded < 25) {
+        category = 'Healthy Weight';
+        badgeClasses = 'px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800';
+        tip = 'Great job! Your BMI is within the healthy clinical range. Keep up balanced whole-food nutrition and 150 minutes of weekly physical activity.';
+      } else if (rounded < 30) {
+        category = 'Overweight';
+        badgeClasses = 'px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800';
+        tip = 'Slightly above the optimal range. Gradual lifestyle adjustments, daily brisk walking, and an annual lipid/HbA1c panel can protect long-term heart health.';
+      } else {
+        category = 'Obese Range';
+        badgeClasses = 'px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800';
+        tip = 'Higher BMI increases metabolic and joint strain. Our Internal Medicine & Dietetics clinic offers supportive, personalized weight-wellness plans.';
+      }
+
+      badgeEl.textContent = category;
+      badgeEl.className = badgeClasses;
+      tipEl.textContent = tip;
+
+      // Map BMI [15..40] onto [5%..95%]
+      const clamped = Math.min(40, Math.max(15, rounded));
+      const pct = ((clamped - 15) / 25) * 90 + 5;
+      markerEl.style.left = `${pct}%`;
+    }
+
+    // Patient FAQ Accordion
+    function renderFAQs() {
+      const container = document.getElementById('faqAccordion');
+      container.innerHTML = PATIENT_FAQS.map((item, idx) => `
+        <div class="py-4 first:pt-0 last:pb-0">
+          <button
+            type="button"
+            onclick="toggleFaq(${idx})"
+            class="w-full flex items-center justify-between gap-4 text-left group focus:outline-none"
+            aria-expanded="${idx === 0 ? 'true' : 'false'}"
+            id="faqBtn-${idx}"
+          >
+            <span class="font-display font-bold text-sm sm:text-base text-slate-900 group-hover:text-clinical-700 transition">
+              ${item.q}
+            </span>
+            <span id="faqIcon-${idx}" class="w-7 h-7 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 transition-transform duration-200 ${idx === 0 ? 'rotate-180 bg-clinical-100 text-clinical-700' : ''}">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </span>
+          </button>
+          <div id="faqPanel-${idx}" class="${idx === 0 ? '' : 'hidden'} mt-3 pr-8 text-sm text-slate-600 leading-relaxed">
+            ${item.a}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleFaq(index) {
+      const panel = document.getElementById(`faqPanel-${index}`);
+      const icon = document.getElementById(`faqIcon-${index}`);
+      const btn = document.getElementById(`faqBtn-${index}`);
+      const willOpen = panel.classList.contains('hidden');
+
+      panel.classList.toggle('hidden', !willOpen);
+      icon.classList.toggle('rotate-180', willOpen);
+      icon.classList.toggle('bg-clinical-100', willOpen);
+      icon.classList.toggle('text-clinical-700', willOpen);
+      btn.setAttribute('aria-expanded', String(willOpen));
+    }
+
+    /* ============================================================
+       11. EMERGENCY CONTACTS, CAMPUS MAP & INQUIRY FORMS
+    ============================================================ */
+    function renderEmergencyContacts() {
+      document.getElementById('emergencyContactsGrid').innerHTML = EMERGENCY_CONTACTS.map(item => `
+        <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 flex flex-col justify-between gap-3 hover:bg-white/15 transition">
+          <div>
+            <h3 class="font-display font-bold text-base text-white">${item.title}</h3>
+            <p class="text-xs text-red-100">${item.sub}</p>
+          </div>
+          <div class="flex items-center justify-between gap-2 pt-2 border-t border-white/15">
+            <a href="tel:${item.number.replace(/[^+\d]/g, '')}" class="font-mono font-bold text-sm text-white hover:underline">
+              ${item.number}
+            </a>
+            <div class="flex items-center gap-1.5">
+              <button
+                type="button"
+                onclick="copyNumberToast('${item.number}', '${item.title}')"
+                class="px-2.5 py-1 rounded-lg bg-white/15 hover:bg-white/25 text-white text-[11px] font-bold transition"
+                title="Copy phone number"
+              >
+                Copy
+              </button>
+              <a
+                href="tel:${item.number.replace(/[^+\d]/g, '')}"
+                class="px-2.5 py-1 rounded-lg bg-white text-emergency-700 hover:bg-red-50 text-[11px] font-extrabold transition"
+              >
+                Call
+              </a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function showCampusInfo(text) {
+      document.getElementById('campusHighlightText').textContent = text;
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('contactName').value.trim();
+      const subject = document.getElementById('contactSubject').value;
+      document.getElementById('contactInquiryForm').reset();
+      showToast(`Thank you, ${name}! Your "${subject}" inquiry has been received.`, 'success');
+    }
+
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('newsletterEmail').value.trim();
+      if (!email) return;
+      document.getElementById('newsletterForm').reset();
+      showToast(`Subscribed ${email} to NovaCare Wellness Updates!`, 'success');
+    }
+
+    /* ============================================================
+       12. SHARED MODAL, CLIPBOARD (iFrame-Safe) & TOAST HELPERS
+    ============================================================ */
+    function openModal(innerHtml) {
+      const overlay = document.getElementById('modalOverlay');
+      const box = document.getElementById('modalContentBox');
+      box.innerHTML = innerHtml;
+      overlay.classList.remove('hidden');
+      overlay.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeModal() {
+      const overlay = document.getElementById('modalOverlay');
+      if (overlay.classList.contains('hidden')) return;
+      overlay.classList.add('hidden');
+      overlay.classList.remove('flex');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function handleBackdropClick(e) {
+      if (e.target === document.getElementById('modalOverlay')) {
+        closeModal();
+      }
+    }
+
+    // iFrame-safe clipboard copy using document.execCommand('copy')
+    function copyTextToClipboard(text, successMsg) {
+      try {
+        const tempInput = document.createElement('textarea');
+        tempInput.value = text;
+        tempInput.setAttribute('readonly', '');
+        tempInput.style.position = 'fixed';
+        tempInput.style.left = '-9999px';
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        showToast(successMsg || `Copied: ${text}`, 'success');
+      } catch (err) {
+        showToast(`Number: ${text}`, 'info');
+      }
+    }
+
+    function copyNumberToast(number, label) {
+      copyTextToClipboard(number, `${label} (${number}) copied to clipboard.`);
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+
+      const colors = {
+        success: 'bg-clinical-900 border-clinical-600 text-white',
+        warning: 'bg-emergency-700 border-red-400 text-white',
+        info: 'bg-slate-900 border-slate-700 text-white'
+      };
+
+      const icon = type === 'warning'
+        ? `<svg class="w-4 h-4 text-red-200 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`
+        : `<svg class="w-4 h-4 text-cyan-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl border shadow-xl text-xs sm:text-sm font-medium transition-all duration-300 translate-y-2 opacity-0 ${colors[type] || colors.info}`;
+      toast.innerHTML = `${icon}<span>${escapeHtml(message)}</span>`;
+
+      container.appendChild(toast);
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      });
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3600);
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+  </script>
+</body>
+</html>
